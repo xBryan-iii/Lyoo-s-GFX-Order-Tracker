@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-const token = 'NTk4MTQ5NzQxNTQ4OTI5MDI0.XUbPHw.t19NP7I4QVGAWEadgvhPQRkNwp8';
+const token = process.env.Lyoo-s-GFX-Order-Tracker;
 
 const PREFIX = '-';
 
