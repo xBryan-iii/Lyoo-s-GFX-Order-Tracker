@@ -66,7 +66,7 @@ client.on('message', message => {
             .setColor(0x81BEF7)
             .setFooter(`Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
             .setThumbnail(message.author.avatarURL)
-            message.guild.channels.find(channel => channel.name === "💡suggestions").sendEmbed(suggest)
+            message.guild.channels.find(channel => channel.id === "600967664222994432").sendEmbed(suggest)
                 .then( async (message) => {
                     await message.react('✅');
                     await message.react('🤷');
