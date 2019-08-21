@@ -20,7 +20,7 @@ client.on('message', message => {
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             if (!args[1]) return message.reply('Error occurred! Please define the limit of the orders for this open. (1 word)')
-            message.guild.channels.find(channel => channel.name === "📮ordering-announcement").send(`@everyone`)
+            message.guild.channels.find(channel => channel.id === "598145812610023439").send(`@everyone`)
             const open = new Discord.RichEmbed()
             .setTitle('**__:package: | Orders__**')
             .addField(':page_facing_up: **Information:**', 'Orders are now open! Come to the Ordering Centre and order now!')
@@ -29,7 +29,7 @@ client.on('message', message => {
             .setColor(0x00af64)
             .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
             .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
-            message.guild.channels.find(channel => channel.name === "📮ordering-announcement").sendEmbed(open);
+            message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(open);
             break;
         case 'closed':
             if (!message.content.startsWith(PREFIX)) return
@@ -42,7 +42,7 @@ client.on('message', message => {
             .setColor(0xe40045)
             .setFooter(`Status: Closed! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
             .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
-            message.guild.channels.find(channel => channel.name === "📮ordering-announcement").sendEmbed(closed);
+            message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(closed);
             break;
         case 'left':
             if (!message.content.startsWith(PREFIX)) return
@@ -55,7 +55,7 @@ client.on('message', message => {
             .setColor(0xDF7401)
             .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
             .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
-            message.guild.channels.find(channel => channel.name === "📮ordering-announcement").sendEmbed(left);
+            message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(left);
             break;
         case 'suggest':
             if (!message.content.startsWith(PREFIX)) return
@@ -79,7 +79,7 @@ client.on('message', message => {
             const help = new Discord.RichEmbed()
             .setTitle()
             .setThumbnail(message.author.avatarURL)
-            message.guild.channels.find(channel => channel.name === "🤖staff-commands").sendEmbed(help);
+            message.channel.sendEmbed(help);
             break;
         case 'clear':
             if (!message.content.startsWith(PREFIX)) return
