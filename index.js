@@ -18,7 +18,7 @@ client.on('message', message => {
     switch(args[0]) {
         case 'open':
             if (!message.content.startsWith(PREFIX)) return
-            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.').catch(console.error);
+            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             if (!args[1]) return message.reply('Error occurred! Please define the limit of the orders for this open. (1 word or number)').catch(console.error)
             message.guild.channels.find(channel => channel.id === "598145812610023439").send(`@everyone`).catch(console.error)
             const open = new Discord.RichEmbed()
@@ -33,7 +33,7 @@ client.on('message', message => {
             break;
         case 'closed':
             if (!message.content.startsWith(PREFIX)) return
-            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.').catch(console.error);
+            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             if (!args[1]) return message.reply('Error occurred! Please define a reason why you want to close the orders.').catch(console.error)
             const closed = new Discord.RichEmbed()
             .setTitle('__**:package: | Orders**__')
@@ -46,7 +46,7 @@ client.on('message', message => {
             break;
         case 'left':
             if (!message.content.startsWith(PREFIX)) return
-            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.').catch(console.error);
+            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             if (!args[1]) return message.reply('Error occurred! Please define how much orders left to the close. (1 word)')
             const left = new Discord.RichEmbed()
             .setTitle('__**:package: | Orders**__')
@@ -92,13 +92,13 @@ client.on('message', message => {
             break;
         case 'clear':
             if (!message.content.startsWith(PREFIX)) return
-            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.').catch(console.error);
+            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             if (!args[1]) return message.reply('Error occurred! Please define a number of the messages which you want to delete.').catch(console.error)
             message.channel.bulkDelete(args[1]).catch(console.error);
         break;
         case 'kick':
             if (!message.content.startsWith(PREFIX)) return
-            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.').catch(console.error);
+            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             const user = message.mentions.users.first().catch(console.error);
 
             if (user){
