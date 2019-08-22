@@ -19,7 +19,7 @@ client.on('message', message => {
         case 'open':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
-            if (!args[1]) return message.reply('Error occurred! Please define the limit of the orders for this open. (1 word)')
+            if (!args[1]) return message.reply('Error occurred! Please define the limit of the orders for this open. (1 word or number)')
             message.guild.channels.find(channel => channel.id === "598145812610023439").send(`@everyone`)
             const open = new Discord.RichEmbed()
             .setTitle('**__:package: | Orders__**')
