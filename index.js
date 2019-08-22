@@ -19,7 +19,7 @@ client.on('message', message => {
         case 'open':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
-            if (!args[1]) return message.reply('Error occurred! Please define the limit of the orders for this open. (1 word)')
+            if (!args[1]) return message.reply('Error occurred! Please define the limit of the orders for this open. (1 word or number)')
             message.guild.channels.find(channel => channel.id === "598145812610023439").send(`@everyone`)
             const open = new Discord.RichEmbed()
             .setTitle('**__:package: | Orders__**')
@@ -27,7 +27,7 @@ client.on('message', message => {
             .addField(':exclamation: **Limit:**', `Spots are limited! Only ${args[1]} orders will be accepted until they open again!`)
             .addField(':link:** Ordering Centre:**', 'https://www.roblox.com/games/3401558963/Lyoos-GFX-Order-Center')
             .setColor(0x00af64)
-            .setFooter(`Status: Open! • Posted by: ${message.author.tag} • Bot creator: Bryan!#1557`)
+            .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
             .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
             message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(open);
             break;
@@ -40,7 +40,7 @@ client.on('message', message => {
             .addField('**:page_facing_up: Information:**', 'Orders are now closed! I am truly sorry for those who could not make it at the time. You can always try next time!')
             .addField('**:question: Reason:**', `${message.content.split(" ").slice(1).join(" ").slice()}`)
             .setColor(0xe40045)
-            .setFooter(`Status: Closed! • Posted by: ${message.author.tag} • Bot creator: Bryan!#1557`)
+            .setFooter(`Status: Closed! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
             .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
             message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(closed);
             break;
@@ -53,7 +53,7 @@ client.on('message', message => {
             .addField('**:page_facing_up: Information:**', `Hurry up! There are only ${args[1]} spots left to the close of the orders!`)
             .addField(':link:** Ordering Centre:**', 'https://www.roblox.com/games/3401558963/Lyoos-GFX-Order-Center')
             .setColor(0xDF7401)
-            .setFooter(`Status: Open! • Posted by: ${message.author.tag} • Bot creator: Bryan!#1557`)
+            .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
             .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
             message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(left);
             break;
@@ -64,7 +64,7 @@ client.on('message', message => {
             .setTitle('__**:bulb: | Suggestion**__')
             .setDescription(`${message.content.split(" ").slice(1).join(" ").slice()}`)
             .setColor(0x81BEF7)
-            .setFooter(`Posted by: ${message.author.tag} • Bot creator: Bryan!#1557`)
+            .setFooter(`Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
             .setThumbnail(message.author.avatarURL)
             message.guild.channels.find(channel => channel.id === "600967664222994432").sendEmbed(suggest)
                 .then( async (message) => {
