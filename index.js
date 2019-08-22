@@ -21,15 +21,15 @@ client.on('message', message => {
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.').catch(console.error);
             if (!args[1]) return message.reply('Error occurred! Please define the limit of the orders for this open. (1 word or number)').catch(console.error)
             message.guild.channels.find(channel => channel.id === "598145812610023439").send(`@everyone`).catch(console.error)
-            const open = new Discord.RichEmbed().catch(console.error)
-            .setTitle('**__:package: | Orders__**').catch(console.error)
-            .addField(':page_facing_up: **Information:**', 'Orders are now open! Come to the Ordering Centre and order now!').catch(console.error)
-            .addField(':exclamation: **Limit:**', `Spots are limited! Only ${args[1]} orders will be accepted until they open again!`).catch(console.error)
-            .addField(':link:** Ordering Centre:**', 'https://www.roblox.com/games/3401558963/Lyoos-GFX-Order-Center').catch(console.error)
-            .setColor(0x00af64).catch(console.error)
-            .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`).catch(console.error)
-            .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png").catch(console.error)
-            message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(open).catch(console.error).catch(console.error);
+            const open = new Discord.RichEmbed()
+            .setTitle('**__:package: | Orders__**')
+            .addField(':page_facing_up: **Information:**', 'Orders are now open! Come to the Ordering Centre and order now!')
+            .addField(':exclamation: **Limit:**', `Spots are limited! Only ${args[1]} orders will be accepted until they open again!`)
+            .addField(':link:** Ordering Centre:**', 'https://www.roblox.com/games/3401558963/Lyoos-GFX-Order-Center')
+            .setColor(0x00af64)
+            .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
+            .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
+            message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(open).catch(console.error);
             break;
         case 'closed':
             if (!message.content.startsWith(PREFIX)) return
@@ -47,14 +47,14 @@ client.on('message', message => {
         case 'left':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.').catch(console.error);
-            if (!args[1]) return message.reply('Error occurred! Please define how much orders left to the close. (1 word)').catch(console.error)
+            if (!args[1]) return message.reply('Error occurred! Please define how much orders left to the close. (1 word)')
             const left = new Discord.RichEmbed()
             .setTitle('__**:package: | Orders**__')
-            .addField('**:page_facing_up: Information:**', `Hurry up! There are only ${args[1]} spots left to the close of the orders!`).catch(console.error)
-            .addField(':link:** Ordering Centre:**', 'https://www.roblox.com/games/3401558963/Lyoos-GFX-Order-Center').catch(console.error)
+            .addField('**:page_facing_up: Information:**', `Hurry up! There are only ${args[1]} spots left to the close of the orders!`)
+            .addField(':link:** Ordering Centre:**', 'https://www.roblox.com/games/3401558963/Lyoos-GFX-Order-Center')
             .setColor(0xDF7401)
             .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
-            .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png").catch(console.error)
+            .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
             message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(left).catch(console.error);
             break;
         case 'suggest':
