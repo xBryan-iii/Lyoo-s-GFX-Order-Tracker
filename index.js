@@ -30,7 +30,7 @@ client.on('message', message => {
             .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
             .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
             message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(open).catch(console.error);
-            break;
+        break;
         case 'closed':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
@@ -43,7 +43,7 @@ client.on('message', message => {
             .setFooter(`Status: Closed! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
             .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
             message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(closed).catch(console.error);
-            break;
+        break;
         case 'left':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
@@ -56,7 +56,7 @@ client.on('message', message => {
             .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
             .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
             message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(left).catch(console.error);
-            break;
+        break;
         case 'suggest':
             if (!message.content.startsWith(PREFIX)) return
             if (!args[1]) return message.reply('Error occurred! Please type your suggestion.').catch(console.error)
@@ -73,12 +73,12 @@ client.on('message', message => {
                     await message.react('❌');
                     messageId = message.id;
                 });
-            break;
+        break;
         case 'send':
             if (!message.content.startsWith(PREFIX)) return
             if (!args[1]) return message.reply('Error occurred! Please type your message.').catch(console.error)
             message.guild.channels.find(channel => channel.id === args[1]).send(message.content.split(" ").slice(2).join(" ").slice()).catch(console.error)
-            break;
+        break;
         case 'question':
             if (!message.content.startsWith(PREFIX)) return
             if (!args[1]) return message.reply('Error occurred! Please type your question.').catch(console.error)
@@ -89,7 +89,15 @@ client.on('message', message => {
             .setFooter(`Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
             .setThumbnail(message.author.avatarURL)
             message.guild.channels.find(channel => channel.id === "612298094251343892").sendEmbed(question)
-            break;
+        break;
+        case 'help':
+            if (!message.content.startsWith(PREFIX)) return
+            const help = new Discord.RichEmbed()
+            .setTitle('')
+            .setDescription('')
+            .setThumbnail(client.avatarURL)
+            message.channel.sendEmbed(help)
+        break;
         case 'clear':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
