@@ -13,7 +13,7 @@ client.on('ready', () =>{
 
 client.on('message', message => {
     
-    let args = message.content.slice(PREFIX.length).split(/ +/).catch(console.error);
+    let args = message.content.slice(PREFIX.length).split(/ +/);
 
     switch(args[0]) {
         case 'open':
@@ -68,10 +68,10 @@ client.on('message', message => {
             .setThumbnail(message.author.avatarURL)
             message.guild.channels.find(channel => channel.id === "600967664222994432").sendEmbed(suggest).catch(console.error)
                 .then( async (message) => {
-                    await message.react('✅').catch(console.error);
-                    await message.react('🤷').catch(console.error);
-                    await message.react('❌').catch(console.error);
-                    messageId = message.id.catch(console.error);
+                    await message.react('✅');
+                    await message.react('🤷');
+                    await message.react('❌');
+                    messageId = message.id;
                 });
             break;
         case 'send':
