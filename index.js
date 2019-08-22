@@ -73,12 +73,23 @@ client.on('message', message => {
                     await message.react('❌').catch(console.error);
                     messageId = message.id.catch(console.error);
                 });
-            break;
+        break;
         case 'send':
             if (!message.content.startsWith(PREFIX)) return
             if (!args[1]) return message.reply('Error occurred! Please type your message.').catch(console.error)
             message.guild.channels.find(channel => channel.id === args[1]).send(message.content.split(" ").slice(2).join(" ").slice()).catch(console.error)
-            break;
+        break;
+        case 'question':
+            if (!message.content.startsWith(PREFIX)) return
+            if (!args[1]) return message.reply('Error occurred! Please type your question.').catch(console.error)
+            const question = new Discord.RichEmbed().catch(console.error)
+            .setTitle('__**:question: | Question**__').catch(console.error)
+            .setDescription(`${message.content.split(" ").slice(1).join(" ").slice()}`).catch(console.error)
+            .setColor(0x81BEF7).catch(console.error)
+            .setFooter(`Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`).catch(console.error)
+            .setThumbnail(message.author.avatarURL).catch(console.error)
+            message.guild.channels.find(channel => channel.id === "612298094251343892").sendEmbed(question).catch(console.error)
+        break;
         case 'clear':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.').catch(console.error);
