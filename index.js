@@ -35,37 +35,37 @@ client.on('message', message => {
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.').catch(console.error);
             if (!args[1]) return message.reply('Error occurred! Please define a reason why you want to close the orders.').catch(console.error)
-            const closed = new Discord.RichEmbed().catch(console.error)
-            .setTitle('__**:package: | Orders**__').catch(console.error)
+            const closed = new Discord.RichEmbed()
+            .setTitle('__**:package: | Orders**__')
             .addField('**:page_facing_up: Information:**', 'Orders are now closed! I am truly sorry for those who could not make it at the time. You can always try next time!').catch(console.error)
-            .addField('**:question: Reason:**', `${message.content.split(" ").slice(1).join(" ").slice()}`).catch(console.error)
-            .setColor(0xe40045).catch(console.error)
-            .setFooter(`Status: Closed! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`).catch(console.error)
-            .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png").catch(console.error)
+            .addField('**:question: Reason:**', `${message.content.split(" ").slice(1).join(" ").slice()}`)
+            .setColor(0xe40045)
+            .setFooter(`Status: Closed! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
+            .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
             message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(closed).catch(console.error);
             break;
         case 'left':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.').catch(console.error);
             if (!args[1]) return message.reply('Error occurred! Please define how much orders left to the close. (1 word)').catch(console.error)
-            const left = new Discord.RichEmbed().catch(console.error)
-            .setTitle('__**:package: | Orders**__').catch(console.error)
+            const left = new Discord.RichEmbed()
+            .setTitle('__**:package: | Orders**__')
             .addField('**:page_facing_up: Information:**', `Hurry up! There are only ${args[1]} spots left to the close of the orders!`).catch(console.error)
             .addField(':link:** Ordering Centre:**', 'https://www.roblox.com/games/3401558963/Lyoos-GFX-Order-Center').catch(console.error)
-            .setColor(0xDF7401).catch(console.error)
-            .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`).catch(console.error)
+            .setColor(0xDF7401)
+            .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
             .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png").catch(console.error)
             message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(left).catch(console.error);
             break;
         case 'suggest':
             if (!message.content.startsWith(PREFIX)) return
             if (!args[1]) return message.reply('Error occurred! Please type your suggestion.').catch(console.error)
-            const suggest = new Discord.RichEmbed().catch(console.error)
-            .setTitle('__**:bulb: | Suggestion**__').catch(console.error)
-            .setDescription(`${message.content.split(" ").slice(1).join(" ").slice()}`).catch(console.error)
-            .setColor(0x81BEF7).catch(console.error)
-            .setFooter(`Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`).catch(console.error)
-            .setThumbnail(message.author.avatarURL).catch(console.error)
+            const suggest = new Discord.RichEmbed()
+            .setTitle('__**:bulb: | Suggestion**__')
+            .setDescription(`${message.content.split(" ").slice(1).join(" ").slice()}`)
+            .setColor(0x81BEF7)
+            .setFooter(`Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
+            .setThumbnail(message.author.avatarURL)
             message.guild.channels.find(channel => channel.id === "600967664222994432").sendEmbed(suggest).catch(console.error)
                 .then( async (message) => {
                     await message.react('✅').catch(console.error);
@@ -73,23 +73,23 @@ client.on('message', message => {
                     await message.react('❌').catch(console.error);
                     messageId = message.id.catch(console.error);
                 });
-        break;
+            break;
         case 'send':
             if (!message.content.startsWith(PREFIX)) return
             if (!args[1]) return message.reply('Error occurred! Please type your message.').catch(console.error)
             message.guild.channels.find(channel => channel.id === args[1]).send(message.content.split(" ").slice(2).join(" ").slice()).catch(console.error)
-        break;
+            break;
         case 'question':
             if (!message.content.startsWith(PREFIX)) return
             if (!args[1]) return message.reply('Error occurred! Please type your question.').catch(console.error)
-            const question = new Discord.RichEmbed().catch(console.error)
-            .setTitle('__**:question: | Question**__').catch(console.error)
-            .setDescription(`${message.content.split(" ").slice(1).join(" ").slice()}`).catch(console.error)
-            .setColor(0x81BEF7).catch(console.error)
-            .setFooter(`Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`).catch(console.error)
-            .setThumbnail(message.author.avatarURL).catch(console.error)
-            message.guild.channels.find(channel => channel.id === "612298094251343892").sendEmbed(question).catch(console.error)
-        break;
+            const question = new Discord.RichEmbed()
+            .setTitle('__**:question: | Question**__')
+            .setDescription(`${message.content.split(" ").slice(1).join(" ").slice()}`)
+            .setColor(0x81BEF7)
+            .setFooter(`Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
+            .setThumbnail(message.author.avatarURL)
+            message.guild.channels.find(channel => channel.id === "612298094251343892").sendEmbed(question)
+            break;
         case 'clear':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.').catch(console.error);
