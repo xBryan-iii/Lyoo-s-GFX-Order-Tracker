@@ -74,12 +74,10 @@ client.on('message', message => {
                     messageId = message.id;
                 });
             break;
-        case 'help':
+        case 'send':
             if (!message.content.startsWith(PREFIX)) return
-            const help = new Discord.RichEmbed()
-            .setTitle()
-            .setThumbnail(message.author.avatarURL)
-            message.channel.sendEmbed(help);
+            if (!args[1]) return message.reply('Error occurred! Please type your message.')
+            message.guild.channels.first.tag.send(message.content.split(" ").slice(1).join(" ").slice())
             break;
         case 'clear':
             if (!message.content.startsWith(PREFIX)) return
