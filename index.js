@@ -11,6 +11,34 @@ client.on('ready', () =>{
 
 });
 
+client.on('message', message => {
+    if(message.author.bot)
+    {
+        if(message.embeds)
+        {
+            const embedMsg = message.embeds.find(msg => msg.title === 'Server Roles');
+            if(embedMsg)
+            {
+                message.react('🇨🇵')
+                .then(reaction => reaction.message.react('🇬🇧'))
+                .catch(err => console.error);
+            }
+        }
+        return;
+    }
+    if(message.content.toLowerCase() === '-roles')
+    {
+        const embed = new RichEmbed();
+        embed.setTitle("Server Roles");
+        embed.setColor("")
+        embed.setDescription("**FR:** Pour commencer, sélectionnez votre langage et vous aurez accès complètement au Discord ! Vous pourrez bien sûre changer le langage dans le future. Si vous sélectionnez les deux, vous serez automatiquement parlé en Français."), true
+        embed.setDescription("**ENG:** To start, select your language to have complete access to the Discord! You can, of course, change the language in the future. If you choose both languages, you will be automatically talked in French."), true
+        embed.setDescription(":flag_fr: **FRANÇAIS**")
+        embed.setDescription(":flag_gb **ENGLISH**")
+        message.channel.send(embed)
+    }
+})
+
 client.on('messageReactionAdd', (reaction, user) => {
     if(user.bot)
         return;
