@@ -28,7 +28,7 @@ client.on('message', message => {
     }
     if(message.content.toLowerCase() === '-roles')
     {
-        const embed = new RichEmbed();
+        const embed = new Discord.RichEmbed();
         embed.setTitle("Server Roles");
         embed.setColor("")
         embed.setDescription("**FR:** Pour commencer, sélectionnez votre langage et vous aurez accès complètement au Discord ! Vous pourrez bien sûre changer le langage dans le future. Si vous sélectionnez les deux, vous serez automatiquement parlé en Français."), true
