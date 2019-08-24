@@ -53,7 +53,9 @@ client.on('raw', event => {
 });
 
 client.on('messageReactionAdd', (messageReaction, user) => {
-    var role = '🇨🇵 Français';
+    var roleName = '🇨🇵 Français';
+    var role = messageReaction.message.guild.roles.find(role => role.name.toLowerCase() ===
+    roleName.toLowerCase());
 
     if (role)
     {
@@ -67,10 +69,22 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 });
 
 client.on('messageReactionAdd', (messageReaction, user) => {
-    var role = '🇬🇧 English';
-
     if (role)
     {
+        var roleName = '🇬🇧 English';
+        var role = messageReaction.message.guild.roles.find(role => role.name.toLowerCase() ===
+        roleName.toLowerCase());
+        var member = messageReaction.message.guild.members.find(member => member.id === user.id);
+        if (member)
+        {
+            member.addRole(role.id);
+            console.log("Success. Added role.");
+        }
+    } else
+    {
+        var roleName = '🇨🇵 Français';
+        var role = messageReaction.message.guild.roles.find(role => role.name.toLowerCase() ===
+        roleName.toLowerCase());
         var member = messageReaction.message.guild.members.find(member => member.id === user.id);
         if (member)
         {
@@ -81,24 +95,22 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 });
 
 client.on('messageReactionRemove', (messageReaction, user) => {
-    var role = '🇬🇧 English';
-
     if (role)
     {
+        var roleName = '🇨🇵 Français';
+        var role = messageReaction.message.guild.roles.find(role => role.name.toLowerCase() ===
+        roleName.toLowerCase());
         var member = messageReaction.message.guild.members.find(member => member.id === user.id);
         if (member)
         {
             member.removeRole(role.id);
             console.log("Success. Removed role.");
         }
-    }
-});
-
-client.on('messageReactionRemove', (messageReaction, user) => {
-    var role = '🇨🇵 Français';
-
-    if (role)
+    } else
     {
+        var roleName = '🇬🇧 English';
+        var role = messageReaction.message.guild.roles.find(role => role.name.toLowerCase() ===
+        roleName.toLowerCase());
         var member = messageReaction.message.guild.members.find(member => member.id === user.id);
         if (member)
         {
