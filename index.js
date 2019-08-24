@@ -53,9 +53,7 @@ client.on('raw', event => {
 });
 
 client.on('messageReactionAdd', (messageReaction, user) => {
-    var roleName = '🇨🇵 Français';
-    var role = messageReaction.message.guild.roles.find(role => role.name.toLowerCase() ===
-    roleName.toLowerCase());
+    var role = '🇨🇵 Français';
 
     if (role)
     {
@@ -69,9 +67,7 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 });
 
 client.on('messageReactionAdd', (messageReaction, user) => {
-    var roleName = '🇬🇧 English';
-    var role = messageReaction.message.guild.roles.find(role => role.name.toLowerCase() ===
-    roleName.toLowerCase());
+    var role = '🇬🇧 English';
 
     if (role)
     {
@@ -85,9 +81,7 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 });
 
 client.on('messageReactionRemove', (messageReaction, user) => {
-    var roleName = '🇬🇧 English';
-    var role = messageReaction.message.guild.roles.find(role => role.name.toLowerCase() ===
-    roleName.toLowerCase());
+    var role = '🇬🇧 English';
 
     if (role)
     {
@@ -101,9 +95,7 @@ client.on('messageReactionRemove', (messageReaction, user) => {
 });
 
 client.on('messageReactionRemove', (messageReaction, user) => {
-    var roleName = '🇨🇵 Français';
-    var role = messageReaction.message.guild.roles.find(role => role.name.toLowerCase() ===
-    roleName.toLowerCase());
+    var role = '🇨🇵 Français';
 
     if (role)
     {
