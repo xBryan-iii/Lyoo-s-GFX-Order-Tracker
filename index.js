@@ -31,7 +31,7 @@ client.on('message', message => {
         const embed = new Discord.RichEmbed();
         embed.setTitle("Server Roles");
         embed.setColor("")
-        embed.addField("**FR:**", "Pour commencer, sélectionnez votre langage et vous aurez accès complètement au Discord ! Vous pourrez bien sûre changer le langage dans le future. Si vous sélectionnez les deux, vous serez automatiquement parlé en Français.")
+        embed.addField("**FR:**", "Pour commencer, sélectionnez votre langage et vous aurez accès complètement au Discord! Vous pourrez bien sûre changer le langage dans le future. Si vous sélectionnez les deux, vous serez automatiquement parlé en Français.")
         embed.addField("**ENG:**", "To start, select your language to have complete access to the Discord! You can, of course, change the language in the future. If you choose both languages, you will be automatically talked in French.")
         embed.addField(":flag_fr:", "**FRANÇAIS**")
         embed.addField(":flag_gb:", "**ENGLISH**")
@@ -43,7 +43,7 @@ client.on('messageReactionAdd', (reaction, user) => {
     if(user.bot)
         return;
 
-    var roleName = reaction.emoji.name;
+    var roleName = '🇬🇧 English';
     var role = reaction.message.guild.roles.find(role => role.name.toLowerCase() === roleName.toLowerCase());
     var member = reaction.message.guild.members.find(member => member.id === user.id)
 
