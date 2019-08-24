@@ -53,7 +53,7 @@ client.on('raw', event => {
 });
 
 client.on('messageReactionAdd', (messageReaction, user) => {
-    var roleName = '614761735806517248';
+    var roleName = '614761735806517248' ; '614761643628560384';
     var role = messageReaction.message.guild.roles.find(role => role.name.toLowerCase() ===
     roleName.toLowerCase());
 
@@ -69,7 +69,7 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 });
 
 client.on('messageReactionRemove', (messageReaction, user) => {
-    var roleName = messageReaction.emoji.name
+    var roleName = '614761735806517248' ; '614761643628560384'
     var role = messageReaction.message.guild.roles.find(role => role.name.toLowerCase() ===
     roleName.toLowerCase());
 
