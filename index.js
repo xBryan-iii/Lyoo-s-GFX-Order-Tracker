@@ -93,8 +93,8 @@ client.on('message', message => {
         case 'help':
             if (!message.content.startsWith(PREFIX)) return
             const help = new Discord.RichEmbed()
-            .setTitle('')
-            .setDescription('')
+            .setTitle('Under construction')
+            .setDescription('Under construction')
             .setThumbnail(client.avatarURL)
             message.channel.sendEmbed(help)
         break;
