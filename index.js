@@ -114,6 +114,8 @@ client.on('message', message => {
                 await message.react('🇬🇧');
                 messageId = message.id;
             });
+            if (member.message.react('🇫🇷')) message.member.addRole('614761643628560384')
+            
         break;
         case 'clear':
             if (!message.content.startsWith(PREFIX)) return
