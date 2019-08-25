@@ -103,12 +103,10 @@ client.on('message', message => {
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             const en_fr = new Discord.RichEmbed()
             .setTitle('__**:flag_fr: :flag_gb: | Get Roles**__')
-            .addField('**FR:**', 'Pour commencer, sélectionnez votre langage et vous aurez accès complètement au Discord ! Vous pourrez bien sûre changer le langage dans le future. Si vous sélectionnez les deux, vous serez automatiquement parlé en Français.', true)
-            .addBlankField(true)
-            .addField('**ENG:**', 'To start, select your language to have complete access to the Discord! You can, of course, change the language in the future. If you choose both languages, you will be automatically talked in French.', true)
-            .addBlankField(true)
-            .addField(':flag_fr:', '**FRANÇAIS**')
-            .addField(':flag_gb:', '**ENGLISH**')
+            .addField('**FR:**', 'Pour commencer, sélectionnez votre langage et vous aurez accès complètement au Discord ! Vous pourrez bien sûre changer le langage dans le future. Si vous sélectionnez les deux, vous serez automatiquement parlé en Français.')
+            .addField('**ENG:**', 'To start, select your language to have complete access to the Discord! You can, of course, change the language in the future. If you choose both languages, you will be automatically talked in French.')
+            .addField(':flag_fr:', '**FRANÇAIS**', true)
+            .addField(':flag_gb:', '**ENGLISH**', true)
             .setFooter(`Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
             message.channel.sendEmbed(en_fr)
             .then( async (message) => {
@@ -116,6 +114,7 @@ client.on('message', message => {
                 await message.react('🇬🇧');
                 messageId = message.id;
             });
+        break;
         case 'clear':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
