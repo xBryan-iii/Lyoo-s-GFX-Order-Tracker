@@ -110,6 +110,7 @@ client.on('message', message => {
             .addField(':flag_fr:', '**FRANÇAIS**')
             .addField(':flag_gb:', '**ENGLISH**')
             .setFooter(`Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
+            message.channel.sendEmbed(en_fr)
         case 'clear':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
