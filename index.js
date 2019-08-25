@@ -14,13 +14,23 @@ client.on('ready', () =>{
 client.on('messageReactionAdd', (reaction, user) => {
     if(user.bot)
         return;
-        
+
     var roleName = reaction.emoji.name
     var role = reaction.message.guild.roles.find(role => role.name.toLowerCase() === roleName.toLowerCase());
     var member = reaction.message.guild.members.find(member => member.id === user.id);
-    member.addRole(role.id).then(member => {
-        console.log("Added " + member.user.username + " to a role.");
-    }).catch(err => console.error);
+
+    if(member.roles.has(role.id))
+    {
+        member.removeRole(role.id).then(member => {
+            console.log("Removed " + member.user.username + " from the " + role.name + " role.");
+        }).catch(err => console.error);
+    }
+    else {
+        member.addRole(role.id).then(member => {
+            console.log("Added " + member.user.username + " to the " + role.name + " role.");
+        }).catch(err => console.error);
+    }
+
 });
 
 client.on('message', message => {
