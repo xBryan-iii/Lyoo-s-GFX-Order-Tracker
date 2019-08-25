@@ -12,56 +12,6 @@ client.on('ready', () =>{
 });
 
 client.on('message', message => {
-    if(message.author.bot)
-    {
-        if(message.embeds)
-        {
-            const embedMsg = message.embeds.find(msg => msg.title === 'Server Roles');
-            if(embedMsg)
-            {
-                message.react('🇨🇵')
-                .then(reaction => reaction.message.react('🇬🇧'))
-                .catch(err => console.error);
-            }
-        }
-        return;
-    }
-    if(message.content.toLowerCase() === '-roles')
-    {
-        const embed = new Discord.RichEmbed();
-        embed.setTitle("Server Roles");
-        embed.setColor("")
-        embed.addField("**FR:**", "Pour commencer, sélectionnez votre langage et vous aurez accès complètement au Discord! Vous pourrez bien sûre changer le langage dans le future. Si vous sélectionnez les deux, vous serez automatiquement parlé en Français.")
-        embed.addField("**ENG:**", "To start, select your language to have complete access to the Discord! You can, of course, change the language in the future. If you choose both languages, you will be automatically talked in French.")
-        embed.addField(":flag_fr:", "**FRANÇAIS**")
-        embed.addField(":flag_gb:", "**ENGLISH**")
-        message.channel.send(embed)
-    }
-})
-
-client.on('messageReactionAdd', (reaction, user) => {
-    if(user.bot)
-        return;
-
-    var roleName = '🇬🇧 English';
-    var role = reaction.message.guild.roles.find(role => role.name.toLowerCase() === roleName.toLowerCase());
-    var member = reaction.message.guild.members.find(member => member.id === user.id)
-
-    if(member.roles.has(role.name))
-    {
-        member.removeRole(role.name).then(member => {
-            console.log("Removed " + member.user.username + " from the " + role.name + " role.");
-        }).catch(err => console.error);
-    }
-    else {
-        member.addRole(role.name).then(member => {
-            console.log("Added " + member.user.username + " to a role.");
-        }).catch(err => console.error);
-    }
-
-});
-
-client.on('message', message => {
     
     let args = message.content.slice(PREFIX.length).split(/ +/);
 
@@ -148,11 +98,24 @@ client.on('message', message => {
             .setThumbnail(client.avatarURL)
             message.channel.sendEmbed(help)
         break;
+        case 'en_fr':
+            if (!message.content.startsWith(PREFIX)) return
+            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
+            const en_fr = new Discord.RichEmbed()
+            .setTitle('__**:flag_fr: :flag_gb: | Get Roles**__')
+            .addField('**FR:**', 'Pour commencer, sélectionnez votre langage et vous aurez accès complètement au Discord ! Vous pourrez bien sûre changer le langage dans le future. Si vous sélectionnez les deux, vous serez automatiquement parlé en Français.', true)
+            .addField(' ')
+            .addField('**ENG:**', 'To start, select your language to have complete access to the Discord! You can, of course, change the language in the future. If you choose both languages, you will be automatically talked in French.', true)
+            .addField(' ')
+            .addField(':flag_fr:', '**FRANÇAIS**')
+            .addField(':flag_gb:', '**ENGLISH**')
+            .setFooter(`Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
         case 'clear':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             if (!args[1]) return message.reply('Error occurred! Please define a number of the messages which you want to delete.').catch(console.error)
             message.channel.bulkDelete(args[1]).catch(console.error);
+            message.channel.send(`Successfully deleted ${args[1]} messages.`)
         break;
         case 'kick':
             if (!message.content.startsWith(PREFIX)) return
