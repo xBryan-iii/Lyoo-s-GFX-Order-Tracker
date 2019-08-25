@@ -8,7 +8,30 @@ const PREFIX = '-';
 client.on('ready', () =>{
     console.log('This bot is online!');
     client.user.setActivity(`Orders`, { type: 'WATCHING'}).catch(console.error);
+    let myGuild = client.guilds.get('573082577288822805');
+    let memberCount = myGuild.memberCount;
+    let memberCountChannel = myGuild.channels.get('615073428977745930');
+    memberCountChannel.setName('Total Members: ' + memberCount)
+    .then(result => console.log(result))
+    .catch(error => console.log(error));
+});
 
+client.on('guildMemberAdd', member => {
+    let myGuild = client.guilds.get('573082577288822805');
+    let memberCount = myGuild.memberCount;
+    let memberCountChannel = myGuild.channels.get('615073428977745930');
+    memberCountChannel.setName('Total Members: ' + memberCount)
+    .then(result => console.log(result))
+    .catch(error => console.log(error));
+});
+
+client.on('guildMemberRemove', member => {
+    let myGuild = client.guilds.get('573082577288822805');
+    let memberCount = myGuild.memberCount;
+    let memberCountChannel = myGuild.channels.get('615073428977745930');
+    memberCountChannel.setName('Total Members: ' + memberCount)
+    .then(result => console.log(result))
+    .catch(error => console.log(error));
 });
 
 client.on('messageReactionAdd', (reaction, user) => {
