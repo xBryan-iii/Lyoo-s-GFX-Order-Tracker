@@ -14,7 +14,6 @@ client.on('ready', () =>{
     let botCountChannel = myGuild.channels.get('615485353192587274');
     let memberCountChannel = myGuild.channels.get('615073428977745930');
     userCountChannel.setName('Total Users: ' + memberCount.valueOf(client))
-    botCountChannel.setName('Total Bots ' + member.bot)
     memberCountChannel.setName('Total Members: ' + memberCount)
     .then(result => console.log(result))
     .catch(error => console.log(error));
