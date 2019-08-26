@@ -14,7 +14,7 @@ client.on('ready', () =>{
     let botCountChannel = myGuild.channels.get('615485353192587274');
     let memberCountChannel = myGuild.channels.get('615073428977745930');
     userCountChannel.setName('Total Users: ' + memberCount.valueOf(client))
-    botCountChannel.setName('Total Bots ' + memberCount.valueOf(client))
+    botCountChannel.setName('Total Bots ' + user.bot)
     memberCountChannel.setName('Total Members: ' + memberCount)
     .then(result => console.log(result))
     .catch(error => console.log(error));
@@ -26,8 +26,8 @@ client.on('guildMemberAdd', member => {
     let userCountChannel = myGuild.channels.get('615485514501455872');
     let botCountChannel = myGuild.channels.get('615485353192587274');
     let memberCountChannel = myGuild.channels.get('615073428977745930');
-    userCountChannel.setName('Total Users: ' + memberCount.valueOf(client))
-    botCountChannel.setName('Total Bots ' + memberCount.valueOf(client))
+    userCountChannel.setName('Total Users: ' + memberCount.valueOf(bot))
+    botCountChannel.setName('Total Bots ' + user.bot)
     memberCountChannel.setName('Total Members: ' + memberCount)
     .then(result => console.log(result))
     .catch(error => console.log(error));
@@ -40,7 +40,7 @@ client.on('guildMemberRemove', member => {
     let botCountChannel = myGuild.channels.get('615485353192587274');
     let memberCountChannel = myGuild.channels.get('615073428977745930');
     userCountChannel.setName('Total Users: ' + memberCount.valueOf(client))
-    botCountChannel.setName('Total Bots: ' + memberCount.valueOf(client))
+    botCountChannel.setName('Total Bots: ' + user.bot)
     memberCountChannel.setName('Total Members: ' + memberCount)
     .then(result => console.log(result))
     .catch(error => console.log(error));
