@@ -10,7 +10,13 @@ client.on('ready', () =>{
     client.user.setActivity(`Orders`, { type: 'WATCHING'}).catch(console.error);
     let myGuild = client.guilds.get('573082577288822805');
     let memberCount = myGuild.memberCount;
+    let botCount = myGuild.botCount;
+    let userCount = myGuild.userCount;
+    let userCountChannel = myGuild.channels.get('615485514501455872');
+    let botCountChannel = myGuild.channels.get('615485353192587274');
     let memberCountChannel = myGuild.channels.get('615073428977745930');
+    userCountChannel.setName('Total Users: ' + userCount)
+    botCountChannel.setName('Total Bots ' + botCount)
     memberCountChannel.setName('Total Members: ' + memberCount)
     .then(result => console.log(result))
     .catch(error => console.log(error));
@@ -19,7 +25,13 @@ client.on('ready', () =>{
 client.on('guildMemberAdd', member => {
     let myGuild = client.guilds.get('573082577288822805');
     let memberCount = myGuild.memberCount;
+    let botCount = myGuild.botCount;
+    let userCount = myGuild.userCount;
+    let userCountChannel = myGuild.channels.get('615485514501455872');
+    let botCountChannel = myGuild.channels.get('615485353192587274');
     let memberCountChannel = myGuild.channels.get('615073428977745930');
+    userCountChannel.setName('Total Users: ' + userCount)
+    botCountChannel.setName('Total Bots ' + botCount)
     memberCountChannel.setName('Total Members: ' + memberCount)
     .then(result => console.log(result))
     .catch(error => console.log(error));
@@ -28,7 +40,13 @@ client.on('guildMemberAdd', member => {
 client.on('guildMemberRemove', member => {
     let myGuild = client.guilds.get('573082577288822805');
     let memberCount = myGuild.memberCount;
+    let botCount = myGuild.botCount;
+    let userCount = myGuild.userCount;
+    let userCountChannel = myGuild.channels.get('615485514501455872');
+    let botCountChannel = myGuild.channels.get('615485353192587274');
     let memberCountChannel = myGuild.channels.get('615073428977745930');
+    userCountChannel.setName('Total Users: ' + userCount)
+    botCountChannel.setName('Total Bots ' + botCount)
     memberCountChannel.setName('Total Members: ' + memberCount)
     .then(result => console.log(result))
     .catch(error => console.log(error));
