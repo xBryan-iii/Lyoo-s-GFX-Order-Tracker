@@ -167,7 +167,7 @@ client.on('message', message => {
             if (!args[1]) return message.reply('Error occurred! Please define a number of the messages which you want to delete.').catch(console.error)
             message.channel.bulkDelete(args[1]).catch(console.error);
             message.channel.send(`Successfully deleted ${args[1]} messages.`)
-            message.delete(5000)
+            if (args[1] = '1') return message.channel.send('Successfully deleted 1 message.')
         break;
         case 'kick':
             if (!message.content.startsWith(PREFIX)) return
