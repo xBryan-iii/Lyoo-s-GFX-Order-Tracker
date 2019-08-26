@@ -166,30 +166,29 @@ client.on('message', message => {
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             if (!args[1]) return message.reply('Error occurred! Please define a number of the messages which you want to delete.').catch(console.error)
             message.channel.bulkDelete(args[1]).catch(console.error);
-            message.channel.send(`Successfully deleted ${args[1]} messages.`)
+            message.channel.send(`Successfully deleted ${args[1]} messages.`).catch(console.error)
         break;
         case 'kick':
             if (!message.content.startsWith(PREFIX)) return
-            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
-            const user = message.mentions.users.first().catch(console.error);
+            let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
+            if(!kUser) return message.channel.send("Error occurred! Can't find the user in this server.");
+            let kReason = message.content.split(" ").slice(2).join(" ").slice()
+            if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
+            if(kUser.hasPermission) return message.channel.send("Error occurred! That user is a mod/admin.");
 
-            if (user){
-                const member = message.guild.member(user).catch(console.error);
+            let kickEmbed = new Discord.RichEmbed()
+            .setTitle("**__Kicked Member__**")
+            .addField("Kicked user:", `${kUser} with ID ${kUser.id}`)
+            .addField("Kicked by:", `<@${message.author.id}> with ID ${message.author.id}`)
+            .addField("Kicked in:", `${message.channel} with ID ${message.channel.id}`)
+            .addField("Kicked at:", message.createdAt)
+            .addField("Reason", kReason)
 
-                if (member){
-                    member.kick('Kicked by Administrator.').then(() =>{
-                        message.reply(`${user.tag} was sucsessfully kicked!`).catch(console.error);
-                    }).catch(err =>{
-                        message.reply('Error occurred! I was unable to kick the member!')
-                        console.log(err);
-                    });
-                } else {
-                    message.reply("That user isn\'t in this guild!").catch(console.error)
-                }
-            } else {
-                    message.reply('Error occurred! Please define a person which you want to kick.').catch(console.error)
-            }
+            let kickChannel = message.guild.channels.find(channel => channel.id === "597149222999162891");
+            if(!kickChannel) return message.channel.send("Can't find logs channel.");
 
+            message.guild.member(kUser).kick(kReason);
+            kickChannel.send(kickEmbed);
         break;
     }
 
