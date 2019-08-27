@@ -170,6 +170,7 @@ client.on('message', message => {
         break;
         case 'kick':
             if (!message.content.startsWith(PREFIX)) return
+            if(!args[1]) return message.channel.send("Please type the person you want to kick and the reason of it.")
             let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
             if(!kUser) return message.channel.send("Error occurred! Can't find the user in this server.");
             let kReason = message.content.split(" ").slice(2).join(" ").slice()
@@ -196,11 +197,12 @@ client.on('message', message => {
         break;
         case 'ban':
             if (!message.content.startsWith(PREFIX)) return
+            if(!args[1]) return message.channel.send("Please type the person you want to ban and the reason of it.")
             let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
             if(!bUser) return message.channel.send("Error occurred! Can't find the user in this server.");
             let bReason = message.content.split(" ").slice(2).join(" ").slice()
-            if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
-            if(bUser.hasPermission("KICK_MEMBERS")) return message.channel.send("Error occurred! That user is a mod/admin.");
+            if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
+            if(bUser.hasPermission("BAN_MEMBERS")) return message.channel.send("Error occurred! That user is a mod/admin.");
             if(!args[2]) return message.channel.send("Please type the reason of the ban.")
 
             let banEmbed = new Discord.RichEmbed()
@@ -220,6 +222,15 @@ client.on('message', message => {
             message.guild.member(bUser).ban(bReason);
             banChannel.send(banEmbed);
         break;
+        case 'warn':
+            if (!message.content.startsWith(PREFIX)) return
+            if(!args[1]) return message.channel.send("Please type the person you want to warn and the reason of it.")
+            let wUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
+            if(!wUser) return message.channel.send("Error occurred! Can't find the user in this server.");
+            let wReason = message.content.split(" ").slice(2).join(" ").slice()
+            if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
+            if(wUser.hasPermission("BAN_MEMBERS")) return message.channel.send("Error occurred! That user is a mod/admin.");
+
 
     }
 
