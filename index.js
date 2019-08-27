@@ -170,11 +170,11 @@ client.on('message', message => {
         break;
         case 'kick':
             if (!message.content.startsWith(PREFIX)) return
+            if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             if(!args[1]) return message.channel.send("Please type the person you want to kick and the reason of it.")
-            let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
+            let kUser = message.guild.member(message.mentions.users.first());
             if(!kUser) return message.channel.send("Error occurred! Can't find the user in this server.");
             let kReason = message.content.split(" ").slice(2).join(" ").slice()
-            if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             if(kUser.hasPermission("KICK_MEMBERS")) return message.channel.send("Error occurred! That user is a mod/admin.");
             if(!args[2]) return message.channel.send("Please type the reason of the kick.")
 
@@ -185,23 +185,24 @@ client.on('message', message => {
             .addField("Kicked by:", `<@${message.author.id}> with ID ${message.author.id}`)
             .addField("Kicked in:", `${message.channel} with ID ${message.channel.id}`)
             .addField("Kicked at:", message.createdAt)
-            .addField("Reason", kReason)
-            .setThumbnail(message.mentions.users.first() || message.guild.members.get(args[1]))
+            .addField("Kick reason:", kReason)
+            .setThumbnail(message.mentions.users.first().avatarURL)
             .setFooter("Bot creator: Bryan!#1557")
 
             let kickChannel = message.guild.channels.find(channel => channel.id === "597149222999162891");
             if(!kickChannel) return message.channel.send("Can't find logs channel.");
 
-            message.guild.member(kUser).kick(kReason);
+            message.guild.member(kUser).kick(`${kReason} Kicked by: ${message.author.username} with ID ${message.author.id}`);
             kickChannel.send(kickEmbed);
+            message.guild.member(bUser).createDM(`> You were kicked from ${client.guilds.get('573082577288822805').name} with reason: ${kReason} Kicked by: ${message.author.username} with ID ${message.author.id}`)
         break;
         case 'ban':
             if (!message.content.startsWith(PREFIX)) return
+            if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             if(!args[1]) return message.channel.send("Please type the person you want to ban and the reason of it.")
-            let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
+            let bUser = message.guild.member(message.mentions.users.first());
             if(!bUser) return message.channel.send("Error occurred! Can't find the user in this server.");
             let bReason = message.content.split(" ").slice(2).join(" ").slice()
-            if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             if(bUser.hasPermission("BAN_MEMBERS")) return message.channel.send("Error occurred! That user is a mod/admin.");
             if(!args[2]) return message.channel.send("Please type the reason of the ban.")
 
@@ -212,26 +213,43 @@ client.on('message', message => {
             .addField("Banned by:", `<@${message.author.id}> with ID ${message.author.id}`)
             .addField("Banned in:", `${message.channel} with ID ${message.channel.id}`)
             .addField("Banned at:", message.createdAt)
-            .addField("Reason", bReason)
-            .setThumbnail(message.mentions.users.first() || message.guild.members.get(args[1]))
+            .addField("Ban reason:", bReason)
+            .setThumbnail(message.mentions.users.first().avatarURL)
             .setFooter("Bot creator: Bryan!#1557")
 
             let banChannel = message.guild.channels.find(channel => channel.id === "597149222999162891");
             if(!banChannel) return message.channel.send("Can't find logs channel.");
 
-            message.guild.member(bUser).ban(bReason);
+            message.guild.member(bUser).ban(`${bReason} Banned by: ${message.author.username} with ID ${message.author.id}`);
             banChannel.send(banEmbed);
+            message.guild.member(bUser).createDM(`> You were banned from ${client.guilds.get('573082577288822805').name} with reason: ${bReason} Banned by: ${message.author.username} with ID ${message.author.id}`)
         break;
         case 'warn':
             if (!message.content.startsWith(PREFIX)) return
+            if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             if(!args[1]) return message.channel.send("Please type the person you want to warn and the reason of it.")
-            let wUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
+            let wUser = message.guild.member(message.mentions.users.first());
             if(!wUser) return message.channel.send("Error occurred! Can't find the user in this server.");
             let wReason = message.content.split(" ").slice(2).join(" ").slice()
-            if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             if(wUser.hasPermission("BAN_MEMBERS")) return message.channel.send("Error occurred! That user is a mod/admin.");
+            if(!args[2]) return message.channel.send("Please type the reason of the warning.")
 
+            let warnEmbed = new Discord.RichEmbed()
+            .setTitle("**__Warned Member__**")
+            .setColor(0xFF0000)
+            .addField("Warned user:", `${wUser} with ID ${wUser.id}`)
+            .addField("Warned by:", `<@${message.author.id}> with ID ${message.author.id}`)
+            .addField("Warned in:", `${message.channel} with ID ${message.channel.id}`)
+            .addField("Warned at:", message.createdAt)
+            .addField("Warn reason:", wReason)
+            .setThumbnail(message.mentions.users.first().avatarURL)
+            .setFooter("Bot creator: Bryan!#1557")
 
+            let warnChannel = message.guild.channels.find(channel => channel.id === "597149222999162891");
+            if(!warnChannel) return message.channel.send("Can't find logs channel.");
+
+            warnChannel.send(warnEmbed);
+            message.guild.member(wUser).createDM(`> You were warned from ${client.guilds.get('573082577288822805').name} with reason: ${wReason} Warned by: ${message.author.username} with ID ${message.author.id}`)
     }
 
 
