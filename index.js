@@ -194,6 +194,33 @@ client.on('message', message => {
             message.guild.member(kUser).kick(kReason);
             kickChannel.send(kickEmbed);
         break;
+        case 'ban':
+            if (!message.content.startsWith(PREFIX)) return
+            let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
+            if(!bUser) return message.channel.send("Error occurred! Can't find the user in this server.");
+            let bReason = message.content.split(" ").slice(2).join(" ").slice()
+            if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
+            if(bUser.hasPermission("KICK_MEMBERS")) return message.channel.send("Error occurred! That user is a mod/admin.");
+            if(!args[2]) return message.channel.send("Please type the reason of the ban.")
+
+            let banEmbed = new Discord.RichEmbed()
+            .setTitle("**__Banned Member__**")
+            .setColor(0xFF0000)
+            .addField("Banned user:", `${bUser} with ID ${bUser.id}`)
+            .addField("Banned by:", `<@${message.author.id}> with ID ${message.author.id}`)
+            .addField("Banned in:", `${message.channel} with ID ${message.channel.id}`)
+            .addField("Banned at:", message.createdAt)
+            .addField("Reason", bReason)
+            .setThumbnail(message.mentions.users.first() || message.guild.members.get(args[1]))
+            .setFooter("Bot creator: Bryan!#1557")
+
+            let banChannel = message.guild.channels.find(channel => channel.id === "597149222999162891");
+            if(!banChannel) return message.channel.send("Can't find logs channel.");
+
+            message.guild.member(bUser).ban(bReason);
+            banChannel.send(banEmbed);
+        break;
+
     }
 
 
