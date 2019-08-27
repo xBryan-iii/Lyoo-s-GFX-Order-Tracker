@@ -175,14 +175,17 @@ client.on('message', message => {
             let kReason = message.content.split(" ").slice(2).join(" ").slice()
             if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             if(kUser.hasPermission("KICK_MEMBERS")) return message.channel.send("Error occurred! That user is a mod/admin.");
+            if(!args[1]) return message.channel.send("Please type the reason of the kick.")
 
             let kickEmbed = new Discord.RichEmbed()
             .setTitle("**__Kicked Member__**")
+            .setColor(0xFF0000)
             .addField("Kicked user:", `${kUser} with ID ${kUser.id}`)
             .addField("Kicked by:", `<@${message.author.id}> with ID ${message.author.id}`)
             .addField("Kicked in:", `${message.channel} with ID ${message.channel.id}`)
             .addField("Kicked at:", message.createdAt)
             .addField("Reason", kReason)
+            .setFooter("Bot creator: Bryan!#1557")
 
             let kickChannel = message.guild.channels.find(channel => channel.id === "597149222999162891");
             if(!kickChannel) return message.channel.send("Can't find logs channel.");
