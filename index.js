@@ -175,7 +175,7 @@ client.on('message', message => {
             let kReason = message.content.split(" ").slice(2).join(" ").slice()
             if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             if(kUser.hasPermission("KICK_MEMBERS")) return message.channel.send("Error occurred! That user is a mod/admin.");
-            if(!args[1]) return message.channel.send("Please type the reason of the kick.")
+            if(!args[2]) return message.channel.send("Please type the reason of the kick.")
 
             let kickEmbed = new Discord.RichEmbed()
             .setTitle("**__Kicked Member__**")
