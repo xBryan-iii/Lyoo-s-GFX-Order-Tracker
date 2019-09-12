@@ -121,8 +121,14 @@ client.on('message', message => {
         break;
         case 'send':
             if (!message.content.startsWith(PREFIX)) return
-            if (!args[1]) return message.reply('Error occurred! Please type your message.').catch(console.error)
-            message.guild.channels.find(channel => channel.id === args[1]).send(message.content.split(" ").slice(2).join(" ").slice()).catch(console.error)
+            if (!args[1]) return message.reply('Error occurred! Please type the channel where you want the message to be send.')
+            if (!args[2]) return message.reply('Error occurred! Please type the title of the message which you want to be send.')
+            const send = new Discord.RichEmbed()
+            .setTitle(`${message.content.split(" ").slice(2).join(" ").slice()}`)
+            .setDescription(`${message.content.split(" ").slice(3).join(" ").slice()}`)
+            .setColor(0x9FF781)
+            .setFooter(`Bot creator: Bryan!#1557`)
+            message.guild.channels.find(channel => channel.id === args[1]).sendEmbed(send)
         break;
         case 'question':
             if (!message.content.startsWith(PREFIX)) return
@@ -186,13 +192,13 @@ client.on('message', message => {
             .addField("Kicked in:", `${message.channel} with ID ${message.channel.id}`)
             .addField("Kicked at:", message.createdAt)
             .addField("Kick reason:", kReason)
-            .setThumbnail(message.mentions.users.first().avatarURL)
+            .setThumbnail(client.guilds.get('573082577288822805').)
             .setFooter("Bot creator: Bryan!#1557")
 
             let kickChannel = message.guild.channels.find(channel => channel.id === "597149222999162891");
             if(!kickChannel) return message.channel.send("Can't find logs channel.");
 
-            message.guild.member(kUser).kick(`${kReason} Kicked by: ${message.author.username} with ID ${message.author.id}`);
+            message.guild.member(kUser).kick(`${kReason} | Kicked by: ${message.author.username} with ID ${message.author.id}`);
             kickChannel.send(kickEmbed);
             message.mentions.users.first().send(`> You were kicked from ${client.guilds.get('573082577288822805').name} with reason: ${kReason} Kicked by: ${message.author.username} with ID ${message.author.id}`)
         break;
@@ -220,7 +226,7 @@ client.on('message', message => {
             let banChannel = message.guild.channels.find(channel => channel.id === "597149222999162891");
             if(!banChannel) return message.channel.send("Can't find logs channel.");
 
-            message.guild.member(bUser).ban(`${bReason} Banned by: ${message.author.username} with ID ${message.author.id}`);
+            message.guild.member(bUser).ban(`${bReason} | Banned by: ${message.author.username} with ID ${message.author.id}`);
             banChannel.send(banEmbed);
             bUser.send(`> You were banned from ${client.guilds.get('573082577288822805').name} with reason: ${bReason} Banned by: ${message.author.username} with ID ${message.author.id}`)
         break;
