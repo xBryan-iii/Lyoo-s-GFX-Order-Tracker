@@ -249,7 +249,7 @@ client.on('message', message => {
             if(!warnChannel) return message.channel.send("Can't find logs channel.");
 
             warnChannel.send(warnEmbed);
-            kUser.send(`> You were warned from ${client.guilds.get('573082577288822805').name} with reason: ${wReason} Warned by: ${message.author.username} with ID ${message.author.id}`)
+            wUser.send(`> You were warned from ${client.guilds.get('573082577288822805').name} with reason: ${wReason} Warned by: ${message.author.username} with ID ${message.author.id}`)
     }
 
 
