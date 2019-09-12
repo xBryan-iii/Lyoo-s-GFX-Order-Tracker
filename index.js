@@ -194,7 +194,7 @@ client.on('message', message => {
 
             message.guild.member(kUser).kick(`${kReason} Kicked by: ${message.author.username} with ID ${message.author.id}`);
             kickChannel.send(kickEmbed);
-            message.guild.member(kUser).createDM(`> You were kicked from ${client.guilds.get('573082577288822805').name} with reason: ${kReason} Kicked by: ${message.author.username} with ID ${message.author.id}`)
+            message.kUser(`> You were kicked from ${client.guilds.get('573082577288822805').name} with reason: ${kReason} Kicked by: ${message.author.username} with ID ${message.author.id}`)
         break;
         case 'ban':
             if (!message.content.startsWith(PREFIX)) return
@@ -222,7 +222,7 @@ client.on('message', message => {
 
             message.guild.member(bUser).ban(`${bReason} Banned by: ${message.author.username} with ID ${message.author.id}`);
             banChannel.send(banEmbed);
-            message.guild.member(bUser).createDM(`> You were banned from ${client.guilds.get('573082577288822805').name} with reason: ${bReason} Banned by: ${message.author.username} with ID ${message.author.id}`)
+            message.bUser(`> You were banned from ${client.guilds.get('573082577288822805').name} with reason: ${bReason} Banned by: ${message.author.username} with ID ${message.author.id}`)
         break;
         case 'warn':
             if (!message.content.startsWith(PREFIX)) return
@@ -249,7 +249,7 @@ client.on('message', message => {
             if(!warnChannel) return message.channel.send("Can't find logs channel.");
 
             warnChannel.send(warnEmbed);
-            message.guild.member(wUser).createDM(`> You were warned from ${client.guilds.get('573082577288822805').name} with reason: ${wReason} Warned by: ${message.author.username} with ID ${message.author.id}`)
+            message.wUser(`> You were warned from ${client.guilds.get('573082577288822805').name} with reason: ${wReason} Warned by: ${message.author.username} with ID ${message.author.id}`)
     }
 
 
