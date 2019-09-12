@@ -123,6 +123,7 @@ client.on('message', message => {
             if (!message.content.startsWith(PREFIX)) return
             if (!args[1]) return message.reply('Error occurred! Please type the channel where you want the message to be send.')
             if (!args[2]) return message.reply('Error occurred! Please type the title of the message which you want to be send.')
+            if (!args[3]) return message.reply('Error occurred! Please type the message which you want to be send.')
             const send = new Discord.RichEmbed()
             .setTitle(`${message.content.split(" ").slice(2).join(" ").slice()}`)
             .setDescription(`${message.content.split(" ").slice(3).join(" ").slice()}`)
