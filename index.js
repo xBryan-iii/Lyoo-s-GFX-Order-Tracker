@@ -222,7 +222,7 @@ client.on('message', message => {
 
             message.guild.member(bUser).ban(`${bReason} Banned by: ${message.author.username} with ID ${message.author.id}`);
             banChannel.send(banEmbed);
-            kUser.send(`> You were banned from ${client.guilds.get('573082577288822805').name} with reason: ${bReason} Banned by: ${message.author.username} with ID ${message.author.id}`)
+            bUser.send(`> You were banned from ${client.guilds.get('573082577288822805').name} with reason: ${bReason} Banned by: ${message.author.username} with ID ${message.author.id}`)
         break;
         case 'warn':
             if (!message.content.startsWith(PREFIX)) return
