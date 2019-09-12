@@ -192,7 +192,7 @@ client.on('message', message => {
             .addField("Kicked in:", `${message.channel} with ID ${message.channel.id}`)
             .addField("Kicked at:", message.createdAt)
             .addField("Kick reason:", kReason)
-            .setThumbnail(client.guilds.get('573082577288822805').)
+            .setThumbnail()
             .setFooter("Bot creator: Bryan!#1557")
 
             let kickChannel = message.guild.channels.find(channel => channel.id === "597149222999162891");
