@@ -72,7 +72,7 @@ client.on('message', message => {
             .addField(':exclamation: **Limit:**', `Spots are limited! Only ${args[1]} orders will be accepted until they open again!`)
             .addField(':link:** Ordering Centre:**', 'https://www.roblox.com/games/3401558963/Lyoos-GFX-Order-Center')
             .setColor(0x00af64)
-            .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
+            .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
             .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
             message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(open).catch(console.error);
         break;
@@ -85,7 +85,7 @@ client.on('message', message => {
             .addField('**:page_facing_up: Information:**', 'Orders are now closed! I am truly sorry for those who could not make it at the time. You can always try next time!').catch(console.error)
             .addField('**:question: Reason:**', `${message.content.split(" ").slice(1).join(" ").slice()}`)
             .setColor(0xe40045)
-            .setFooter(`Status: Closed! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
+            .setFooter(`Status: Closed! ● Posted by: ${message.author.tag} ● Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
             .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
             message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(closed).catch(console.error);
         break;
@@ -109,7 +109,7 @@ client.on('message', message => {
             .setTitle('__**:bulb: | Suggestion**__')
             .setDescription(`${message.content.split(" ").slice(1).join(" ").slice()}`)
             .setColor(0x81BEF7)
-            .setFooter(`Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
+            .setFooter(`Posted by: ${message.author.tag} ● Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
             .setThumbnail(message.author.avatarURL)
             message.guild.channels.find(channel => channel.id === "600967664222994432").sendEmbed(suggest)
                 .then( async (message) => {
@@ -128,7 +128,7 @@ client.on('message', message => {
             .setTitle(`${message.content.split(" ").slice(2).join(" ").slice()}`)
             .setDescription(`${message.content.split(" ").slice(3).join(" ").slice()}`)
             .setColor(0x9FF781)
-            .setFooter(`Bot creator: Bryan!#1557`)
+            .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
             message.guild.channels.find(channel => channel.id === args[1]).sendEmbed(send)
         break;
         case 'question':
@@ -138,7 +138,7 @@ client.on('message', message => {
             .setTitle('__**:question: | Question**__')
             .setDescription(`${message.content.split(" ").slice(1).join(" ").slice()}`)
             .setColor(0x81BEF7)
-            .setFooter(`Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
+            .setFooter(`Posted by: ${message.author.tag} ● Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
             .setThumbnail(message.author.avatarURL)
             message.guild.channels.find(channel => channel.id === "612298094251343892").sendEmbed(question)
         break;
@@ -147,7 +147,7 @@ client.on('message', message => {
             const help = new Discord.RichEmbed()
             .setTitle('Under construction')
             .setDescription('Under construction')
-            .setThumbnail(client.avatarURL)
+            .setThumbnail(client.guilds.get('573082577288822805').members.find(member => member.id === "598149741548929024").user.avatarURL)
             message.channel.sendEmbed(help)
         break;
         case 'en_fr':
@@ -159,7 +159,7 @@ client.on('message', message => {
             .addField('**ENG:**', 'To start, select your language to have complete access to the Discord! You can, of course, change the language in the future. If you choose both languages, you will be automatically talked in French.')
             .addField(':flag_fr:', '**FRANÇAIS**', true)
             .addField(':flag_gb:', '**ENGLISH**', true)
-            .setFooter(`Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
+            .setFooter(`Posted by: ${message.author.tag} ● Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
             .setColor(0xF7FE2E)
             message.channel.sendEmbed(en_fr)
             .then( async (message) => {
@@ -171,9 +171,9 @@ client.on('message', message => {
         case 'clear':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
-            if (!args[1]) return message.reply('Error occurred! Please define a number of the messages which you want to delete.').catch(console.error)
-            message.channel.bulkDelete(args[1]).catch(console.error);
-            message.channel.send(`Successfully deleted ${args[1]} messages.`).catch(console.error)
+            if (!args[1]) return message.reply('Error occurred! Please define a number of the messages which you want to delete.')
+            message.channel.bulkDelete(args[1])
+            message.channel.send(`Successfully deleted ${args[1]} messages.`);
         break;
         case 'kick':
             if (!message.content.startsWith(PREFIX)) return
@@ -194,7 +194,7 @@ client.on('message', message => {
             .addField("Kicked at:", message.createdAt)
             .addField("Kick reason:", kReason)
             .setThumbnail()
-            .setFooter("Bot creator: Bryan!#1557")
+            .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
 
             let kickChannel = message.guild.channels.find(channel => channel.id === "597149222999162891");
             if(!kickChannel) return message.channel.send("Can't find logs channel.");
@@ -222,7 +222,7 @@ client.on('message', message => {
             .addField("Banned at:", message.createdAt)
             .addField("Ban reason:", bReason)
             .setThumbnail(message.mentions.users.first().avatarURL)
-            .setFooter("Bot creator: Bryan!#1557")
+            .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
 
             let banChannel = message.guild.channels.find(channel => channel.id === "597149222999162891");
             if(!banChannel) return message.channel.send("Can't find logs channel.");
@@ -238,7 +238,7 @@ client.on('message', message => {
             let wUser = message.guild.member(message.mentions.users.first());
             if(!wUser) return message.channel.send("Error occurred! Can't find the user in this server.");
             let wReason = message.content.split(" ").slice(2).join(" ").slice()
-            if(wUser.hasPermission("BAN_MEMBERS")) return message.channel.send("Error occurred! That user is a mod/admin.");
+            if(wUser.hasPermission("KICK_MEMBERS")) return message.channel.send("Error occurred! That user is a mod/admin.");
             if(!args[2]) return message.channel.send("Please type the reason of the warning.")
 
             let warnEmbed = new Discord.RichEmbed()
@@ -250,17 +250,17 @@ client.on('message', message => {
             .addField("Warned at:", message.createdAt)
             .addField("Warn reason:", wReason)
             .setThumbnail(message.mentions.users.first().avatarURL)
-            .setFooter("Bot creator: Bryan!#1557")
+            .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
 
             let warnChannel = message.guild.channels.find(channel => channel.id === "597149222999162891");
             if(!warnChannel) return message.channel.send("Can't find logs channel.");
 
             warnChannel.send(warnEmbed);
-            wUser.send(`> You were warned from ${client.guilds.get('573082577288822805').name} with reason: ${wReason} Warned by: ${message.author.username} with ID ${message.author.id}`)
+            wUser.send(`> You were warned in ${client.guilds.get('573082577288822805').name} with reason: ${wReason} Warned by: ${message.author.username} with ID ${message.author.id}`)
     }
 
 
 });
 
 
-client.login(token).catch(console.error);
+client.login(token);
