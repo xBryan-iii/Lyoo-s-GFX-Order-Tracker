@@ -177,6 +177,8 @@ client.on('message', message => {
             message.channel.send(`Successfully deleted ${args[1]} message/s.`);
         break;
         case 'dm':
+            if (!message.content.startsWith(PREFIX)) return
+            let kUser = message.guild.member(message.mentions.users.first());
             message.member(kUser).send(`> hi`)
         case 'kick':
             if (!message.content.startsWith(PREFIX)) return
