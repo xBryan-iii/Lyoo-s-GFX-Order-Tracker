@@ -178,8 +178,8 @@ client.on('message', message => {
         break;
         case 'dm':
             if (!message.content.startsWith(PREFIX)) return
-            let kUser = message.guild.member(message.mentions.users.first());
-            message.member(kUser).send(`> hi`)
+            let kUser2 = message.guild.member(message.mentions.users.first());
+            message.member(kUser2).send(`> hi`)
         case 'kick':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
