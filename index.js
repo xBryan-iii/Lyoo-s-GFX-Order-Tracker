@@ -92,26 +92,26 @@ client.on('message', message => {
         case 'left':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
-            if (!args[1]) return message.reply('Error occurred! Please define how much orders left to the close. (1 word)')
+            if (!args[1]) return message.reply('Error occurred! Please define how much orders left to the close. (1 word/number)')
             const left = new Discord.RichEmbed()
             .setTitle('__**:package: | Orders**__')
             .addField('**:page_facing_up: Information:**', `Hurry up! There are only ${args[1]} spots left to the close of the orders!`)
             .addField(':link:** Ordering Centre:**', 'https://www.roblox.com/games/3401558963/Lyoos-GFX-Order-Center')
             .setColor(0xDF7401)
-            .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
+            .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
             .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
-            message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(left).catch(console.error);
+            message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(left);
         break;
         case 'suggest':
             if (!message.content.startsWith(PREFIX)) return
-            if (!args[1]) return message.reply('Error occurred! Please type your suggestion.').catch(console.error)
+            if (!args[1]) return message.reply('Error occurred! Please type your suggestion.')
             const suggest = new Discord.RichEmbed()
             .setTitle('__**:bulb: | Suggestion**__')
             .setDescription(`${message.content.split(" ").slice(1).join(" ").slice()}`)
             .setColor(0x81BEF7)
             .setFooter(`Posted by: ${message.author.tag} ● Bot creator: Bryan!#1557`)
             .setThumbnail(message.author.avatarURL)
-            message.guild.channels.find(channel => channel.id === "600967664222994432").sendEmbed(suggest).catch(console.error)
+            message.guild.channels.find(channel => channel.id === "600967664222994432").sendEmbed(suggest)
                 .then( async (message) => {
                     await message.react('✅');
                     await message.react('🤷');
