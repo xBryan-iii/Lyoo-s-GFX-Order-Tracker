@@ -145,7 +145,7 @@ client.on('message', message => {
         case 'help':
             if (!message.content.startsWith(PREFIX)) return
             const help = new Discord.RichEmbed()
-            .setTitle(':logo: | Help')
+            .setTitle('Under Construction!')
             .addField('Under Construction!', 'Under Construction!')
             .setThumbnail(client.guilds.get('573082577288822805').members.find(member => member.id === "598149741548929024").user.avatarURL)
             .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
