@@ -129,7 +129,7 @@ client.on('message', message => {
             .setDescription(`${message.content.split(" ").slice(3).join(" ").slice()}`)
             .setColor(0x9FF781)
             .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
-            message.guild.channels.find((channel => channel.id === args[1]) | message.mentions.channels.first()).sendEmbed(send)
+            message.guild.channels.find(channel => channel.id === args[1]) | message.mentions.channels.first().sendEmbed(send)
         break;
         case 'question':
             if (!message.content.startsWith(PREFIX)) return
@@ -172,9 +172,9 @@ client.on('message', message => {
         case 'clear':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
-            if (!args[1]) return message.reply('Error occurred! Please define a number of the messages which you want to delete.')
+            if (!args[1]) return message.reply('Error occurred! Please define a number of the message/s which you want to delete.')
             message.channel.bulkDelete(args[1])
-            message.channel.send(`Successfully deleted ${args[1]} messages.`);
+            message.channel.send(`Successfully deleted ${args[1]} message/s.`);
         break;
         case 'kick':
             if (!message.content.startsWith(PREFIX)) return
@@ -202,7 +202,7 @@ client.on('message', message => {
 
             message.guild.member(kUser).kick(`${kReason} | Kicked by: ${message.author.username} with ID ${message.author.id}`);
             kickChannel.send(kickEmbed);
-            message.mentions.users.first().send(`> You were kicked from ${client.guilds.get('573082577288822805').name} with reason: ${kReason} Kicked by: ${message.author.username} with ID ${message.author.id}`)
+            message.mentions.users.first().send(`> You were kicked from ${client.guilds.get('573082577288822805').name}. | Kick reason: ${kReason} | Kicked by: ${message.author.username} with ID ${message.author.id}`)
         break;
         case 'ban':
             if (!message.content.startsWith(PREFIX)) return
@@ -230,7 +230,7 @@ client.on('message', message => {
 
             message.guild.member(bUser).ban(`${bReason} | Banned by: ${message.author.username} with ID ${message.author.id}`);
             banChannel.send(banEmbed);
-            bUser.send(`> You were banned from ${client.guilds.get('573082577288822805').name} with reason: ${bReason} Banned by: ${message.author.username} with ID ${message.author.id}`)
+            bUser.send(`> You were banned from ${client.guilds.get('573082577288822805').name}. | Ban reason: ${bReason} | Banned by: ${message.author.username} with ID ${message.author.id}`)
         break;
         case 'warn':
             if (!message.content.startsWith(PREFIX)) return
@@ -257,7 +257,7 @@ client.on('message', message => {
             if(!warnChannel) return message.channel.send("Can't find logs channel.");
 
             warnChannel.send(warnEmbed);
-            wUser.send(`> You were warned in ${client.guilds.get('573082577288822805').name} with reason: ${wReason} Warned by: ${message.author.username} with ID ${message.author.id}`)
+            wUser.send(`> You were warned in ${client.guilds.get('573082577288822805').name}. | Warn reason: ${wReason} | Warned by: ${message.author.username} with ID ${message.author.id}`)
     }
 
 
