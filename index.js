@@ -176,10 +176,6 @@ client.on('message', message => {
             message.channel.bulkDelete(args[1])
             message.channel.send(`Successfully deleted ${args[1]} message/s.`);
         break;
-        case 'dm':
-            if (!message.content.startsWith(PREFIX)) return
-            let kUser2 = message.guild.member(message.mentions.users.first());
-            kUser2.send(`> hi`)
         case 'kick':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
@@ -206,7 +202,7 @@ client.on('message', message => {
 
             message.guild.member(kUser).kick(`${kReason} | Kicked by: ${message.author.username} with ID ${message.author.id}`);
             kickChannel.send(kickEmbed);
-            message.kUser.send(`> You were kicked from ${client.guilds.get('573082577288822805').name}. | Kick reason: ${kReason} | Kicked by: ${message.author.username} with ID ${message.author.id}`)
+            kUser.send(`> You were kicked from ${client.guilds.get('573082577288822805').name}. | Kick reason: ${kReason} | Kicked by: ${message.author.username} with ID ${message.author.id}`)
         break;
         case 'ban':
             if (!message.content.startsWith(PREFIX)) return
