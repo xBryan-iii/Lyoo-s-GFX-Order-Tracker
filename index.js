@@ -176,6 +176,8 @@ client.on('message', message => {
             message.channel.bulkDelete(args[1])
             message.channel.send(`Successfully deleted ${args[1]} message/s.`);
         break;
+        case 'dm':
+            message.member(kUser).send(`> hi`)
         case 'kick':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
