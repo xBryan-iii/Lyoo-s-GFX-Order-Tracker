@@ -12,20 +12,39 @@ module.exports.run = async (bot, message, args) => {
     if (!message.content.startsWith(PREFIX)) return
     if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
     if(!args[1]) return message.channel.send("> Please type the person you want to warn and the reason of it.")
-    let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+    let wUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!wUser) return message.channel.send("> Error occurred! Can't find the user in this server.");
     let wReason = message.content.split(" ").slice(2).join(" ").slice()
     if(wUser.hasPermission("KICK_MEMBERS")) return message.channel.send("> Error occurred! That user is a mod/admin.");
     if(!args[2]) return message.channel.send("> Please type the reason of the warning.")
-    if(!warns[user.id]) warns[user.id] = {
+    if(!warns[wUser.id]) warns[wUser.id] = {
         warns: 0
     };
 
-    warns[user.id].warns++;
+    warns[wUser.id].warns++;
 
     fs.writeFile("./warnings.json", JSON.stringify(warns), (err) => {
         if (err) console.log(err)
     });
+
+    let warnEmbed = new Discord.RichEmbed()
+        .setTitle("**__Warned Member__**")
+        .setColor(0xFF0000)
+        .addField("Warned user:", `${wUser} with ID ${wUser.id}`)
+        .addField("Warned by:", `<@${message.author.id}> with ID ${message.author.id}`)
+        .addField("Warned in:", `${message.channel} with ID ${message.channel.id}`)
+        .addField("Warned at:", message.createdAt)
+        .addField("Warn reason:", wReason)
+        .addField("Number of warnings:", warns[wUser.id].warns)
+        .setThumbnail(message.mentions.users.first().avatarURL)
+        .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
+        
+        let warnChannel = message.guild.channels.find(channel => channel.id === "597149222999162891");
+        if(!warnChannel) return message.channel.send("> Error occurred! I can't find logs channel.");
+
+        warnChannel.send(warnEmbed);
+        wUser.send(`> You were warned in ${client.guilds.get('573082577288822805').name}. | Warn reason: ${wReason} | Warned by: ${message.author.username} with ID ${message.author.id}`)
+        message.channel.send(`> ${wUser} was successfully warned.`)
 }
 
 module.exports.help = {
@@ -261,37 +280,7 @@ client.on('message', message => {
             bUser.send(`> You were banned from ${client.guilds.get('573082577288822805').name}. | Ban reason: ${bReason} | Banned by: ${message.author.username} with ID ${message.author.id}`)
             message.channel.send(`> ${bUser} was successfully banned.`)
         break;
-        case 'warn':
-            if (!message.content.startsWith(PREFIX)) return
-            if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
-            if(!args[1]) return message.channel.send("> Please type the person you want to warn and the reason of it.")
-            let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-            if(!wUser) return message.channel.send("> Error occurred! Can't find the user in this server.");
-            let wReason = message.content.split(" ").slice(2).join(" ").slice()
-            if(wUser.hasPermission("KICK_MEMBERS")) return message.channel.send("> Error occurred! That user is a mod/admin.");
-            if(!args[2]) return message.channel.send("> Please type the reason of the warning.")
-
-            let warnEmbed = new Discord.RichEmbed()
-            .setTitle("**__Warned Member__**")
-            .setColor(0xFF0000)
-            .addField("Warned user:", `${wUser} with ID ${wUser.id}`)
-            .addField("Warned by:", `<@${message.author.id}> with ID ${message.author.id}`)
-            .addField("Warned in:", `${message.channel} with ID ${message.channel.id}`)
-            .addField("Warned at:", message.createdAt)
-            .addField("Warn reason:", wReason)
-            .setThumbnail(message.mentions.users.first().avatarURL)
-            .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
-
-            let warnChannel = message.guild.channels.find(channel => channel.id === "597149222999162891");
-            if(!warnChannel) return message.channel.send("> Error occurred! I can't find logs channel.");
-
-            warnChannel.send(warnEmbed);
-            wUser.send(`> You were warned in ${client.guilds.get('573082577288822805').name}. | Warn reason: ${wReason} | Warned by: ${message.author.username} with ID ${message.author.id}`)
-            message.channel.send(`> ${wUser} was successfully warned.`)
-        break;
-        case 'warnings':
-            if (!message.content.startsWith(PREFIX)) return
-            if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
+        
     }
 
 
