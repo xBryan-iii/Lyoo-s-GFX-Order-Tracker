@@ -121,7 +121,7 @@ client.on('message', message => {
         break;
         case 'send':
             if (!message.content.startsWith(PREFIX)) return
-            if (!args[1]) return message.reply('Error occurred! Please type the channel where you want the message to be send.')
+            if (!args[1]) return message.reply('Error occurred! Please type the channel id or the tag the channel where you want the message to be send.')
             if (!args[2]) return message.reply('Error occurred! Please type the title of the message which you want to be send.')
             if (!args[3]) return message.reply('Error occurred! Please type the message which you want to be send.')
             const send = new Discord.RichEmbed()
@@ -129,7 +129,7 @@ client.on('message', message => {
             .setDescription(`${message.content.split(" ").slice(3).join(" ").slice()}`)
             .setColor(0x9FF781)
             .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
-            message.guild.channels.find(channel => channel.id === args[1]).sendEmbed(send)
+            message.guild.channels.find(channel => channel.id === args[1] | message.mentions.channels.first()).sendEmbed(send)
         break;
         case 'question':
             if (!message.content.startsWith(PREFIX)) return
@@ -234,7 +234,7 @@ client.on('message', message => {
         break;
         case 'warn':
             if (!message.content.startsWith(PREFIX)) return
-            if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
+            if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('Error occurred! You are missing permission to use this command.');
             if(!args[1]) return message.channel.send("Please type the person you want to warn and the reason of it.")
             let wUser = message.guild.member(message.mentions.users.first());
             if(!wUser) return message.channel.send("Error occurred! Can't find the user in this server.");
