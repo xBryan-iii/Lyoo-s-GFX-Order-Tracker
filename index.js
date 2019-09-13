@@ -129,7 +129,7 @@ client.on('message', message => {
             .setDescription(`${message.content.split(" ").slice(3).join(" ").slice()}`)
             .setColor(0x9FF781)
             .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
-            message.guild.channels.find(channel => channel.id === args[1]) | message.mentions.channels.first().sendEmbed(send)
+            message.guild.channels.find(channel => channel.id === args[1]) || message.mentions.channels.first().sendEmbed(send)
         break;
         case 'question':
             if (!message.content.startsWith(PREFIX)) return
@@ -238,7 +238,7 @@ client.on('message', message => {
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
             if(!args[1]) return message.channel.send("> Please type the person you want to warn and the reason of it.")
-            let wUser = message.guild.member(message.mentions.users.first());
+            let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
             if(!wUser) return message.channel.send("> Error occurred! Can't find the user in this server.");
             let wReason = message.content.split(" ").slice(2).join(" ").slice()
             if(wUser.hasPermission("KICK_MEMBERS")) return message.channel.send("> Error occurred! That user is a mod/admin.");
