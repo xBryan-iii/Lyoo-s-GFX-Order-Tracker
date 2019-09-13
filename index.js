@@ -63,8 +63,8 @@ client.on('message', message => {
     switch(args[0]) {
         case 'open':
             if (!message.content.startsWith(PREFIX)) return
-            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
-            if (!args[1]) return message.reply('Error occurred! Please define the limit of the orders for this open. (1 word or number)').catch(console.error)
+            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
+            if (!args[1]) return message.reply('> Error occurred! Please define the limit of the orders for this open. (1 word or number)').catch(console.error)
             message.guild.channels.find(channel => channel.id === "598145812610023439").send(`@everyone`).catch(console.error)
             const open = new Discord.RichEmbed()
             .setTitle('**__:package: | Orders__**')
@@ -78,8 +78,8 @@ client.on('message', message => {
         break;
         case 'closed':
             if (!message.content.startsWith(PREFIX)) return
-            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
-            if (!args[1]) return message.reply('Error occurred! Please define a reason why you want to close the orders.').catch(console.error)
+            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
+            if (!args[1]) return message.reply('> Error occurred! Please define a reason why you want to close the orders.').catch(console.error)
             const closed = new Discord.RichEmbed()
             .setTitle('__**:package: | Orders**__')
             .addField('**:page_facing_up: Information:**', 'Orders are now closed! I am truly sorry for those who could not make it at the time. You can always try next time!').catch(console.error)
@@ -91,8 +91,8 @@ client.on('message', message => {
         break;
         case 'left':
             if (!message.content.startsWith(PREFIX)) return
-            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
-            if (!args[1]) return message.reply('Error occurred! Please define how much orders left to the close. (1 word/number)')
+            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
+            if (!args[1]) return message.reply('> Error occurred! Please define how much orders left to the close. (1 word/number)')
             const left = new Discord.RichEmbed()
             .setTitle('__**:package: | Orders**__')
             .addField('**:page_facing_up: Information:**', `Hurry up! There are only ${args[1]} spots left to the close of the orders!`)
@@ -104,7 +104,7 @@ client.on('message', message => {
         break;
         case 'suggest':
             if (!message.content.startsWith(PREFIX)) return
-            if (!args[1]) return message.reply('Error occurred! Please type your suggestion.')
+            if (!args[1]) return message.reply('> Error occurred! Please type your suggestion.')
             const suggest = new Discord.RichEmbed()
             .setTitle('__**:bulb: | Suggestion**__')
             .setDescription(`${message.content.split(" ").slice(1).join(" ").slice()}`)
@@ -121,9 +121,9 @@ client.on('message', message => {
         break;
         case 'send':
             if (!message.content.startsWith(PREFIX)) return
-            if (!args[1]) return message.reply('Error occurred! Please type the channel id or the tag the channel where you want the message to be send.')
-            if (!args[2]) return message.reply('Error occurred! Please type the title of the message which you want to be send.')
-            if (!args[3]) return message.reply('Error occurred! Please type the message which you want to be send.')
+            if (!args[1]) return message.reply('> Error occurred! Please type the channel id or the tag the channel where you want the message to be send.')
+            if (!args[2]) return message.reply('> Error occurred! Please type the title of the message which you want to be send.')
+            if (!args[3]) return message.reply('> Error occurred! Please type the message which you want to be send.')
             const send = new Discord.RichEmbed()
             .setTitle(`${message.content.split(" ").slice(2).join(" ").slice()}`)
             .setDescription(`${message.content.split(" ").slice(3).join(" ").slice()}`)
@@ -133,7 +133,7 @@ client.on('message', message => {
         break;
         case 'question':
             if (!message.content.startsWith(PREFIX)) return
-            if (!args[1]) return message.reply('Error occurred! Please type your question.').catch(console.error)
+            if (!args[1]) return message.reply('> Error occurred! Please type your question.')
             const question = new Discord.RichEmbed()
             .setTitle('__**:question: | Question**__')
             .setDescription(`${message.content.split(" ").slice(1).join(" ").slice()}`)
@@ -153,7 +153,7 @@ client.on('message', message => {
         break;
         case 'en_fr':
             if (!message.content.startsWith(PREFIX)) return
-            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Error occurred! You are missing permission to use this command.');
+            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
             const en_fr = new Discord.RichEmbed()
             .setTitle('__**:flag_fr: :flag_gb: | Get Roles**__')
             .addField('**FR:**', 'Pour commencer, sélectionnez votre langage et vous aurez accès complètement au Discord! Vous pourrez bien sûre changer le langage dans le future. Si vous sélectionnez les deux, vous serez automatiquement parlé en Français.')
@@ -262,6 +262,9 @@ client.on('message', message => {
             wUser.send(`> You were warned in ${client.guilds.get('573082577288822805').name}. | Warn reason: ${wReason} | Warned by: ${message.author.username} with ID ${message.author.id}`)
             message.channel.send(`> ${wUser} was successfully warned.`)
         break;
+        case 'warnings':
+            if (!message.content.startsWith(PREFIX)) return
+            if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
     }
 
 
