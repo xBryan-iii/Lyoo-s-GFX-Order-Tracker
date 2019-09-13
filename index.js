@@ -148,6 +148,7 @@ client.on('message', message => {
             .setTitle('Under construction')
             .setDescription('Under construction')
             .setThumbnail(client.guilds.get('573082577288822805').members.find(member => member.id === "598149741548929024").user.avatarURL)
+            .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
             message.channel.sendEmbed(help)
         break;
         case 'en_fr':
