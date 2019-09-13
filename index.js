@@ -203,6 +203,7 @@ client.on('message', message => {
             message.guild.member(kUser).kick(`${kReason} | Kicked by: ${message.author.username} with ID ${message.author.id}`);
             kickChannel.send(kickEmbed);
             kUser.send(`> You were kicked from ${client.guilds.get('573082577288822805').name}. | Kick reason: ${kReason} | Kicked by: ${message.author.username} with ID ${message.author.id}`)
+            message.channel.send(`> ${kUser} was successfully kicked.`)
         break;
         case 'ban':
             if (!message.content.startsWith(PREFIX)) return
@@ -231,6 +232,7 @@ client.on('message', message => {
             message.guild.member(bUser).ban(`${bReason} | Banned by: ${message.author.username} with ID ${message.author.id}`);
             banChannel.send(banEmbed);
             bUser.send(`> You were banned from ${client.guilds.get('573082577288822805').name}. | Ban reason: ${bReason} | Banned by: ${message.author.username} with ID ${message.author.id}`)
+            message.channel.send(`> ${bUser} was successfully banned.`)
         break;
         case 'warn':
             if (!message.content.startsWith(PREFIX)) return
