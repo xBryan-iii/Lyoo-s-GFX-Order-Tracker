@@ -142,7 +142,7 @@ client.on('message', message => {
             .setColor(0x9FF781)
             .setThumbnail(client.guilds.get('573082577288822805').members.find(member => member.id === "598149741548929024").user.avatarURL)
             .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
-            message.guild.channels.find(channel = channel.id === args[1]).sendEmbed(graphic_links)
+            message.guild.channels.find(channel => channel.id === args[1]).sendEmbed(graphic_links)
         case 'help':
             if (!message.content.startsWith(PREFIX)) return
             const help = new Discord.RichEmbed()
