@@ -162,7 +162,18 @@ client.on('message', message => {
             if (!args[1]) return message.channel.send('> Error occurred! Please type the channel id or the tag the channel where you want the message to be send.')
             const how_to_order_2 = new Discord.RichEmbed()
             .setTitle(`${client.guilds.get('573082577288822805').emojis.find(emoji => emoji.name === "logo")} | Order Rules`)
-            .setDescription(`${message.content.split(" ").slice(2).join(" ").slice()}`)
+            .setDescription(`**:one: Payment**
+            Please be sure to pay before your order is being made. Find the T-Shirt corresponding to your order in ${message.guild.channels.find(channel => channel.id === "622442195919568926")}. If you don't buy the T-Shirt, your order will get deleted within 2 days.
+            **:two: Refund Policy**
+            I do **NOT** give refunds if you cancel your order. I only give refunds if I am the one who's cancelling. When buying the T-Shirt, make sure you're buying the right one for your need. If you bought the wrong T-Shirt, you will not be given a refund as it is your own fault. 
+            **:three: Outfit**
+            Be sure to already have your outfit ready as soon as you're ordering. Also, even if you're using a package, you will still be in 1.0. Trust me, 1.0 looks way better on GFXs than other packages.
+            **:four: Reaction Info**
+            If I react to your order with ${client.guilds.get('573082577288822805').emojis.find(emoji => emoji.name === "check")} it means that your order has been accepted and will be worked on soon. If I react with ${client.guilds.get('573082577288822805').emojis.find(emoji => emoji.name === "cross~1")}, it means that your order is invalid. If I react with ${client.guilds.get('573082577288822805').emojis.find(emoji => emoji.name === "up~1")}, it means that your order is done. If I react with ${client.guilds.get('573082577288822805').emojis.find(emoji => emoji.name === "down")}, it means that you need to pay.
+            **:five: Order Boost**
+            If you purchase the "Order Boost" shirt, your order will be completed before everyone else who ordered! If many people use the order boost, the order that will get completed first is the one who was ordered the earliest.
+            **:six: Due Date**
+            Please do NOT order a graphic if you need it within a week. Please keep in mind that I have a social life, I'm not sitting on my computer 24/7. There are also people waiting.`)
             .setColor(0x9FF781)
             .setThumbnail(client.guilds.get('573082577288822805').members.find(member => member.id === "598149741548929024").user.avatarURL)
             .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
