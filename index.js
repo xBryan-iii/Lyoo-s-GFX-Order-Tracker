@@ -70,7 +70,7 @@ client.on('message', message => {
             .setDescription(`Orders are now open! Buy the corresponding T-Shirt in ${message.guild.channels.find(channel => channel.id === "622442195919568926")}, find the format in ${message.guild.channels.find(channel => channel.id === "622442048586514467")}, and paste and fill everything here!`)
             .setColor(0x00af64)
             .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
-            .setThumbnail(client.guilds.get('573082577288822805').iconURL)
+            .setThumbnail(client.guilds.get('573082577288822805').members.find(member => member.id === "598149741548929024").user.avatarURL)
             message.guild.channels.find(channel => channel.id === "622442099995836416").sendEmbed(open);
         break;
         case 'close':
@@ -83,7 +83,7 @@ client.on('message', message => {
             .addField('**:question: REASON**', `${message.content.split(" ").slice(1).join(" ").slice()}`)
             .setColor(0xe40045)
             .setFooter(`Status: Closed! ● Posted by: ${message.author.tag} ● Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
-            .setThumbnail(client.guilds.get('573082577288822805').iconURL)
+            .setThumbnail(client.guilds.get('573082577288822805').members.find(member => member.id === "598149741548929024").user.avatarURL)
             message.guild.channels.find(channel => channel.id === "622442099995836416").sendEmbed(close);
         break;
         case 'suggest':
