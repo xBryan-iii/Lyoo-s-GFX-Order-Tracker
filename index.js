@@ -79,7 +79,7 @@ client.on('message', message => {
             if (!args[1]) return message.reply('> Error occurred! Please define a reason why you want to close the orders.')
             const close = new Discord.RichEmbed()
             .setTitle('**:mailbox: ORDERS CLOSED**')
-            .addField('**:page_facing_up: Information:**', 'Orders are now closed!')
+            .setDescription('Orders are now closed!')
             .addField('**:question: REASON**', `${message.content.split(" ").slice(1).join(" ").slice()}`)
             .setColor(0xe40045)
             .setFooter(`Status: Closed! ● Posted by: ${message.author.tag} ● Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
