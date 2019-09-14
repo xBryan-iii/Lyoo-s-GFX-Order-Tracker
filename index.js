@@ -135,7 +135,7 @@ client.on('message', message => {
         case 'graphic_links':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
-            if (!args[1]) return message.reply('> Error occurred! Please type the channel id or the tag the channel where you want the message to be send.')
+            if (!args[1]) return message.channel.send('> Error occurred! Please type the channel id or the tag the channel where you want the message to be send.')
             const graphic_links = new Discord.RichEmbed()
             .setTitle(`${client.guilds.get('573082577288822805').emojis.find(emoji => emoji.name === "logo")} | Graphic Links`)
             .setDescription(`${message.content.split(" ").slice(3).join(" ").slice()}`)
