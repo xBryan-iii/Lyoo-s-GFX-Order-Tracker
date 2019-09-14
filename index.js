@@ -121,6 +121,7 @@ client.on('message', message => {
         break;
         case 'send':
             if (!message.content.startsWith(PREFIX)) return
+            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
             if (!args[1]) return message.reply('> Error occurred! Please type the channel id or the tag the channel where you want the message to be send.')
             if (!args[2]) return message.reply('> Error occurred! Please type the title of the message which you want to be send.')
             if (!args[3]) return message.reply('> Error occurred! Please type the message which you want to be send.')
@@ -129,19 +130,19 @@ client.on('message', message => {
             .setDescription(`${message.content.split(" ").slice(3).join(" ").slice()}`)
             .setColor(0x9FF781)
             .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
-            message.guild.channels.find(channel => channel.id === args[1]) || message.mentions.channels.first().sendEmbed(send)
+            message.guild.channels.find((channel => channel.id === "622442195919568926") || message.mentions.channels.first()).sendEmbed(send)
         break;
-        case 'question':
+        case 'graphic_links':
             if (!message.content.startsWith(PREFIX)) return
-            if (!args[1]) return message.reply('> Error occurred! Please type your question.')
-            const question = new Discord.RichEmbed()
-            .setTitle('__**:question: | Question**__')
-            .setDescription(`${message.content.split(" ").slice(1).join(" ").slice()}`)
-            .setColor(0x81BEF7)
-            .setFooter(`Posted by: ${message.author.tag} ● Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
-            .setThumbnail(message.author.avatarURL)
-            message.guild.channels.find(channel => channel.id === "612298094251343892").sendEmbed(question)
-        break;
+            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
+            if (!args[1]) return message.reply('> Error occurred! Please type the channel id or the tag the channel where you want the message to be send.')
+            const graphic_links = new Discord.RichEmbed()
+            .setTitle(`${client.guilds.get('573082577288822805').emojis.find(emoji => emoji.name === "logo")} | Graphic Links`)
+            .setDescription(`${message.content.split(" ").slice(3).join(" ").slice()}`)
+            .setColor(0x9FF781)
+            .setThumbnail(client.guilds.get('573082577288822805').members.find(member => member.id === "598149741548929024").user.avatarURL)
+            .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
+            message.guild.channels.find((channel => channel.id === args[1]) || message.mentions.channels.first()).sendEmbed(graphic_links)
         case 'help':
             if (!message.content.startsWith(PREFIX)) return
             const help = new Discord.RichEmbed()
