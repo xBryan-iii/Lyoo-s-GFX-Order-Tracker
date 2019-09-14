@@ -138,7 +138,7 @@ client.on('message', message => {
             if (!args[1]) return message.channel.send('> Error occurred! Please type the channel id or the tag the channel where you want the message to be send.')
             const graphic_links = new Discord.RichEmbed()
             .setTitle(`${client.guilds.get('573082577288822805').emojis.find(emoji => emoji.name === "logo")} | Graphic Links`)
-            .setDescription(`${message.content.split(" ").slice(3).join(" ").slice()}`)
+            .setDescription(`${message.content.split(" ").slice(2).join(" ").slice()}`)
             .setColor(0x9FF781)
             .setThumbnail(client.guilds.get('573082577288822805').members.find(member => member.id === "598149741548929024").user.avatarURL)
             .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
