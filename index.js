@@ -64,49 +64,33 @@ client.on('message', message => {
         case 'open':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
-            if (!args[1]) return message.reply('> Error occurred! Please define the limit of the orders for this open. (1 word or number)').catch(console.error)
-            message.guild.channels.find(channel => channel.id === "598145812610023439").send(`@everyone`).catch(console.error)
+            message.guild.channels.find(channel => channel.id === "622442099995836416").send(`@everyone`)
             const open = new Discord.RichEmbed()
-            .setTitle('**__:package: | Orders__**')
-            .addField(':page_facing_up: **Information:**', 'Orders are now open! Come to the Ordering Centre and order now!')
-            .addField(':exclamation: **Limit:**', `Spots are limited! Only ${args[1]} orders will be accepted until they open again!`)
-            .addField(':link:** Ordering Centre:**', 'https://www.roblox.com/games/3401558963/Lyoos-GFX-Order-Center')
+            .setTitle('**:mailbox: ORDERS OPEN**')
+            .setDescription(`Orders are now open! Buy the corresponding T-Shirt in ${message.guild.channels.find(channel => channel.id === "622442195919568926")}, find the format in ${message.guild.channels.find(channel => channel.id === "622442048586514467")}, and paste and fill everything here!`)
             .setColor(0x00af64)
             .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
-            .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
-            message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(open).catch(console.error);
+            .setThumbnail(client.guilds.get('573082577288822805').iconURL)
+            message.guild.channels.find(channel => channel.id === "622442099995836416").sendEmbed(open);
         break;
-        case 'closed':
+        case 'close':
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
-            if (!args[1]) return message.reply('> Error occurred! Please define a reason why you want to close the orders.').catch(console.error)
-            const closed = new Discord.RichEmbed()
-            .setTitle('__**:package: | Orders**__')
-            .addField('**:page_facing_up: Information:**', 'Orders are now closed! I am truly sorry for those who could not make it at the time. You can always try next time!').catch(console.error)
-            .addField('**:question: Reason:**', `${message.content.split(" ").slice(1).join(" ").slice()}`)
+            if (!args[1]) return message.reply('> Error occurred! Please define a reason why you want to close the orders.')
+            const close = new Discord.RichEmbed()
+            .setTitle('**:mailbox: ORDERS CLOSED**')
+            .addField('**:page_facing_up: Information:**', 'Orders are now closed!')
+            .addField('**:question: REASON**', `${message.content.split(" ").slice(1).join(" ").slice()}`)
             .setColor(0xe40045)
             .setFooter(`Status: Closed! ● Posted by: ${message.author.tag} ● Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
-            .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
-            message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(closed).catch(console.error);
-        break;
-        case 'left':
-            if (!message.content.startsWith(PREFIX)) return
-            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
-            if (!args[1]) return message.reply('> Error occurred! Please define how much orders left to the close. (1 word/number)')
-            const left = new Discord.RichEmbed()
-            .setTitle('__**:package: | Orders**__')
-            .addField('**:page_facing_up: Information:**', `Hurry up! There are only ${args[1]} spots left to the close of the orders!`)
-            .addField(':link:** Ordering Centre:**', 'https://www.roblox.com/games/3401558963/Lyoos-GFX-Order-Center')
-            .setColor(0xDF7401)
-            .setFooter(`Status: Open! ● Posted by: ${message.author.tag} ● Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
-            .setThumbnail("https://cdn.discordapp.com/attachments/564091421766844428/598158027954061342/ordeiefeugf.png")
-            message.guild.channels.find(channel => channel.id === "598145812610023439").sendEmbed(left);
+            .setThumbnail(client.guilds.get('573082577288822805').iconURL)
+            message.guild.channels.find(channel => channel.id === "622442099995836416").sendEmbed(close);
         break;
         case 'suggest':
             if (!message.content.startsWith(PREFIX)) return
             if (!args[1]) return message.reply('> Error occurred! Please type your suggestion.')
             const suggest = new Discord.RichEmbed()
-            .setTitle('__**:bulb: | Suggestion**__')
+            .setTitle('**:bulb: | Suggestion**')
             .setDescription(`${message.content.split(" ").slice(1).join(" ").slice()}`)
             .setColor(0x81BEF7)
             .setFooter(`Posted by: ${message.author.tag} ● Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
@@ -192,7 +176,7 @@ client.on('message', message => {
             if (!message.content.startsWith(PREFIX)) return
             if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
             const en_fr = new Discord.RichEmbed()
-            .setTitle('__**:flag_fr: :flag_gb: | Get Roles**__')
+            .setTitle('**:flag_fr: :flag_gb: | Get Roles**')
             .addField('**FR:**', 'Pour commencer, sélectionnez votre langage et vous aurez accès complètement au Discord! Vous pourrez bien sûre changer le langage dans le future. Si vous sélectionnez les deux, vous serez automatiquement parlé en Français.')
             .addField('**ENG:**', 'To start, select your language to have complete access to the Discord! You can, of course, change the language in the future. If you choose both languages, you will be automatically talked in French.')
             .addField(':flag_fr:', '**FRANÇAIS**', true)
@@ -224,7 +208,7 @@ client.on('message', message => {
             if(!args[2]) return message.channel.send("> Please type the reason of the kick.")
 
             let kickEmbed = new Discord.RichEmbed()
-            .setTitle("**__Kicked Member__**")
+            .setTitle("**Kicked Member**")
             .setColor(0xFF0000)
             .addField("Kicked user:", `${kUser} with ID ${kUser.id}`)
             .addField("Kicked by:", `<@${message.author.id}> with ID ${message.author.id}`)
@@ -253,7 +237,7 @@ client.on('message', message => {
             if(!args[2]) return message.channel.send("> Please type the reason of the ban.")
 
             let banEmbed = new Discord.RichEmbed()
-            .setTitle("**__Banned Member__**")
+            .setTitle("**Banned Member**")
             .setColor(0xFF0000)
             .addField("Banned user:", `${bUser} with ID ${bUser.id}`)
             .addField("Banned by:", `<@${message.author.id}> with ID ${message.author.id}`)
@@ -282,7 +266,7 @@ client.on('message', message => {
             if(!args[2]) return message.channel.send("> Please type the reason of the warning.")
 
             let warnEmbed = new Discord.RichEmbed()
-            .setTitle("**__Warned Member__**")
+            .setTitle("**Warned Member**")
             .setColor(0xFF0000)
             .addField("Warned user:", `${wUser} with ID ${wUser.id}`)
             .addField("Warned by:", `<@${message.author.id}> with ID ${message.author.id}`)
