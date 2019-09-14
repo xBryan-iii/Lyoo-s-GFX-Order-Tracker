@@ -143,6 +143,31 @@ client.on('message', message => {
             .setThumbnail(client.guilds.get('573082577288822805').members.find(member => member.id === "598149741548929024").user.avatarURL)
             .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
             message.guild.channels.find(channel => channel.id === args[1]).sendEmbed(graphic_links)
+        break;
+        case 'how_to_order_1':
+            if (!message.content.startsWith(PREFIX)) return
+            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
+            if (!args[1]) return message.channel.send('> Error occurred! Please type the channel id or the tag the channel where you want the message to be send.')
+            const how_to_order_1 = new Discord.RichEmbed()
+            .setTitle(`${client.guilds.get('573082577288822805').emojis.find(emoji => emoji.name === "logo")} | Order Formats`)
+            .setDescription(`${message.content.split(" ").slice(2).join(" ").slice()}`)
+            .setColor(0x9FF781)
+            .setThumbnail(client.guilds.get('573082577288822805').members.find(member => member.id === "598149741548929024").user.avatarURL)
+            .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
+            message.guild.channels.find(channel => channel.id === args[1]).sendEmbed(how_to_order_1)
+        break;
+        case 'how_to_order_2':
+            if (!message.content.startsWith(PREFIX)) return
+            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('> Error occurred! You are missing permission to use this command.');
+            if (!args[1]) return message.channel.send('> Error occurred! Please type the channel id or the tag the channel where you want the message to be send.')
+            const how_to_order_2 = new Discord.RichEmbed()
+            .setTitle(`${client.guilds.get('573082577288822805').emojis.find(emoji => emoji.name === "logo")} | Order Rules`)
+            .setDescription(`${message.content.split(" ").slice(2).join(" ").slice()}`)
+            .setColor(0x9FF781)
+            .setThumbnail(client.guilds.get('573082577288822805').members.find(member => member.id === "598149741548929024").user.avatarURL)
+            .setFooter(`Bot creator: ${client.guilds.get('573082577288822805').members.find(member => member.id === "254989511640088576").user.tag}`)
+            message.guild.channels.find(channel => channel.id === args[1]).sendEmbed(how_to_order_2)
+        break;
         case 'help':
             if (!message.content.startsWith(PREFIX)) return
             const help = new Discord.RichEmbed()
