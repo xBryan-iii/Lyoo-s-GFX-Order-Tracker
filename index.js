@@ -155,7 +155,7 @@ client.on('message', message => {
             **:four: Reaction Info**
             If I react to your order with ${client.guilds.get('573082577288822805').emojis.find(emoji => emoji.name === "check")} it means that your order has been accepted and will be worked on soon. If I react with ${client.guilds.get('573082577288822805').emojis.find(emoji => emoji.name === "cross")}, it means that your order is invalid. If I react with ${client.guilds.get('573082577288822805').emojis.find(emoji => emoji.name === "up")}, it means that your order is done. If I react with ${client.guilds.get('573082577288822805').emojis.find(emoji => emoji.name === "down")}, it means that you need to pay.
             **:five: Order Boost**
-            If you purchase the "Order Boost" shirt, your order will be completed before everyone else who ordered! If many people use the order boost, the order that will get completed first is the one who was ordered the earliest.
+            If you purchase the "Order Boost" shirt, your order will be completed before everyone else who ordered! If many people use the order boost, the order that will get completed first is the one who was ordered the earliest. Also, when you buy the "Order Boost" shirt, this only applies on **ONE** order. If you buy it twice, it will apply on two order, etc.
             **:six: Due Date**
             Please do NOT order a graphic if you need it within a week. Please keep in mind that I have a social life, I'm not sitting on my computer 24/7. There are also people waiting.`)
             .setColor(0x9FF781)
